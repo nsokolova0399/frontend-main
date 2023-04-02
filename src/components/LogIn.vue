@@ -1,11 +1,12 @@
 <template>
     <div class="container">
         <div class="row">
+            <notifications position="top center" classes="my-notification"/>
             <div class="block__1 col-lg-6 col-md-12 col-xs-12 ">
                 <b-form method="POST" @submit.prevent="login" class="form" style="height: 33.7rem; width: 44.6rem; margin-right: auto; margin-left: auto">
                     <div class="input__group">
-                        <div class="input__group__label">
-                            <label class="mylabel"  style="padding-top: 2.6rem">Логин:</label>
+                        <div class="input__group__label" style="padding-top: 2.6rem">
+                            <label class="mylabel">Логин:</label>
                             <b-input
                                     class="myinput"
                                     v-model="username"
@@ -13,12 +14,12 @@
                                     id="username"
                                     placeholder="Ivanivanov"
                                     autocomplete="on"
-                                    style="width: 39.5rem;border-radius: 8px;margin-top:5.6rem;"
+                                    style="width: 39.5rem;border-radius: 8px;"
                             >
                             </b-input>
                         </div>
                         <div class="input__group__label">
-                            <label class="mylabel"  style="margin-top:9.6rem;">Пароль:</label>
+                            <label class="mylabel">Пароль:</label>
                             <b-input
                                     class="myinput"
                                     v-model="password"
@@ -26,7 +27,7 @@
                                     autocomplete="on"
                                     id="password"
                                     placeholder="******"
-                                    style="width: 39.5rem;border-radius: 8px;margin-top:12.6rem;"
+                                    style="width: 39.5rem;border-radius: 8px;"
                             ></b-input>
                         </div>
                         <div class="mybutton__1">
@@ -34,13 +35,13 @@
                                     class="mybutton"
                                     variant="primary"
                                     type="submit"
-                                    style="width: 12rem;height: 4.4rem; margin-top: 18.6rem;border-radius: 4px;"
+                                    style="width: 12rem;height: 4.4rem; border-radius: 4px;"
                             >Войти
                             </b-button>
                         </div>
                         <div class="row">
-                            <p class="label__1" style="margin-top:1.6rem;">Ещё не зарегистрированы? </p>
-                            <label @click="$router.push('/SignUp')" class="label__2" style="padding-left: 3.3rem;transition: all 1.2s ease;margin-top:1.6rem;">Регистрация</label>
+                            <p class="label__1">Ещё не зарегистрированы? </p>
+                            <label @click="$router.push('/SignUp')" class="label__2" style="padding-left: 3.3rem;transition: all 1.2s ease;">Регистрация</label>
                         </div>
                     </div>
                 </b-form>
@@ -75,7 +76,11 @@
                     })
                     .then(data => {
                         if (!data.data.tokenAuth.success){
-                            alert("Неверные данные")
+                            this.$notify({
+                                type:'error',
+                                title: 'Ошибка.',
+                                text: 'Пожалуйста, введите действительные учетные данные пользователя.',
+                            });
                             localStorage.setItem('auth', false)
                         }else{
                             localStorage.setItem('token', data.data.tokenAuth.token)
@@ -85,7 +90,11 @@
                         }
                     })
                     .catch(error =>{
-                        alert("Ошибка "+error)
+                        this.$notify({
+                            type:'error',
+                            title: 'Ошибка.',
+                            text: error,
+                        });
                     })
             },
         },
@@ -93,12 +102,15 @@
     }
 </script>
 
-<style scoped>
+<style>
     .myinput, .mybutton{
         font-size: 1.8rem;
         font-weight: bold;
+        position: relative;
     }
-
+.mylabel{
+    position: relative;
+}
     .mybutton{
         background: white;
         color:#173A56;
@@ -120,4 +132,6 @@
         border-color: #bcd0e5;
         background: #9fcaf6;
     }
+
+
 </style>

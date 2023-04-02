@@ -37,3 +37,45 @@ export const ME_QUERY = gql`
         }
     }
 `
+
+export const DATASETS_QUERY = gql`
+    query DatasetsQuery{
+        datasetsQuery {
+            result {
+                id
+                title
+                public
+                parameters{
+                    id
+                    title
+                    type
+                }
+                solutions{
+                    id
+                    title
+                    values{
+                        id
+                        value
+                    }
+                }
+                user{
+                    id
+                    username
+                }
+            }
+        }
+    }
+`
+
+
+export const RESULTS_QUERY = gql`
+    query ResultsQuery{
+        resultsQuery {
+            result {
+                id
+                title
+                matchPercentage
+            }
+        }
+    }
+`

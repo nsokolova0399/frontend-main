@@ -7,7 +7,7 @@
                         <img src="../assest_components/navbar.png" style="height: 3em;" />
                     </b-navbar-brand>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <b-navbar-brand>
                         <span @click="$router.push('/')" class="navbar__brand_1 text-center">
                             Научный кабинет
@@ -21,7 +21,7 @@
                         </my-button-light>
                     </b-navbar-brand>
                 </div>
-                <div class="col-2" style="margin-left:-3rem">
+                <div class="col-3" style="margin-left:-3rem">
                     <b-navbar-brand @click="$router.push('/SignUp')">
                         <my-button-dark class="brand__1" style="font-size: 1.3em;">
                             Регистрация

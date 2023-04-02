@@ -1,0 +1,104 @@
+.dataset-form{
+    background-color:#6fa1fc;
+    border-radius: 5px;
+    padding: 2rem 0.5rem;
+    margin-top: 3rem;
+}
+.datasetcreate__first-title-label{
+    color: #173A56;
+    font-size:1.8rem;
+    font-weight: bold;
+}
+.datasetcreate-label{
+    color:white;
+    margin-top: 0.5rem;
+    margin-top: 0.5rem;
+}
+.row{
+    flex-wrap: nowrap;
+}
+
+.datasetcreate__title-input{
+    border-radius: 5px;
+    margin-top: 1rem;
+    height: 3rem;
+    position: relative;
+    font-size: 1.5rem;
+}
+.datasetcreate__title-label{
+    position: relative;
+    color: #781312;
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+}
+.datasetcreate__plus-button, .datasetcreate__plusmin-button, .datasetcreate-label, .datasetcreate-button{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.datasetcreate__plusmin-button{
+    cursor: pointer;
+    background-color: #173A56;
+    border-radius: 10px;
+    border: none;
+    padding: 0;
+    width: 2rem;
+}
+.datasetcreate-button{
+    background-color: #173A56;
+    border-radius: 10px;
+    border: none;
+    margin-top: 2rem;
+    display: flex;
+    align-content: end;
+}
+.datasetcreate-button:hover,.datasetcreate-button:active, .datasetcreate__plusmin-button:hover,.datasetcreate__plusmin-button:active{
+    background-color: #2a5f89;
+    border-radius: 10px;
+    transition: all 1s ease-out;
+    border: none;
+}
+.datasetcreate__param{
+    margin-top: 0.5rem;
+    text-align: center;
+    height: 4rem;
+    position: relative;
+    font-size: 1.5rem;
+}
+
+
+.select-b-select{
+    border-radius: 8px;
+    margin: 0;
+    height: 3rem;
+    position: absolute;
+    font-size: 1.5rem;
+
+}
+.custom-file-label{
+    border-radius: 8px;
+    color: #173A56;
+    font-size: 1.5rem
+}
+
+b-form-file{
+    height: 100%;
+    margin: 0;
+}
+
+.dataset__label{
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #173A56;
+    margin-right: -5rem;
+}
+
+.select-b-select-b{
+    border-radius: 8px;
+    margin: 0;
+    height: 3rem;
+    margin-top: 1rem;
+    position: absolute;
+    font-size: 1.5rem;
+}

@@ -179,6 +179,19 @@ export const ALGORITHMKNN_MUTATION = gql`
                 dataset{
                     title
                     id
+                    parameters{
+                        values{
+                            value
+                        }
+                        description
+                    }
+                    solutions{
+                        title
+                        values{
+                            value
+                        }
+                        description
+                    }
                 }
                 testParameters{
                     type

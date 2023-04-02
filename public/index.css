@@ -1,33 +1,28 @@
-@media only screen and (min-width : 250px) {
+d@media only screen and (min-width : 250px) {
     html{
         font-size: 4px;
     }
 }
-/* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
     html{
         font-size: 5.5px;
     }
 }
-/* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
     html{
         font-size: 7px;
     }
 }
-/* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
     html{
         font-size: 8px;
     }
 }
-/* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
     html{
         font-size: 9px;
     }
 }
-/* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
     html{
         font-size: 10px;
@@ -102,7 +97,6 @@
 }
 .label__2:hover{
     color:#173A56;
-
 }
 
 .error__class{
@@ -113,4 +107,33 @@
 }
 
 
+.my-notification {
+    color: #173A56;
+    background-color: #02897A;
+    margin:2rem;
+    padding: 2rem;
+    word-wrap: break-word;
+}
+.notification-title{
+    font-size: 13px;
+}
+.my-notification.success {
+    border-radius: 4px;
+    background: #cfffc4;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.my-notification.warn {
+    border-radius: 4px;
+    background: #ffebc4;
+    font-size: 12px;
+    font-weight: 500;
+}
+.my-notification.error {
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #ffc4c4;
+}
 

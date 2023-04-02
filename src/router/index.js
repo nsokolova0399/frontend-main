@@ -62,6 +62,7 @@ const router =  new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+
     if(to.matched.some((route) => route.meta?.requiresAuth) ){
             if(localStorage.getItem('auth') === 'true')next()
             else next('/Auth-required')

@@ -2,7 +2,8 @@
   <span>
     <BarUpper></BarUpper>
      <div class="app">
-      <router-view></router-view>
+      <router-view>
+      </router-view>
      </div>
     <BarFooter></BarFooter>
   </span>
