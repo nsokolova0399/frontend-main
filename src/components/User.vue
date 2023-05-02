@@ -2,12 +2,8 @@
     <div class="container">
         <div class="row">
             <notifications position="top center" classes="my-notification"/>
-            <div class="col-3">
-                <BarMenu/>
-            </div>
-            <div class="col-9 col-md-9 col-xs-9" style="margin-top: 7rem">
-                <b-form method="POST" @submit.prevent="changeUser"
-                        style="height: 50rem; width: 53.5rem; background-color:#4d8dff; border-radius:20% 50% / 15% 30%">
+            <div class="col-12 col-md-12 col-xs-12 userBlockForm">
+                <b-form method="POST" @submit.prevent="changeUser" class="userForm">
                     <div v-if="me">
                         <div class="row" v-if="!me.verified">
                             <div class="col-11 input__group" style="padding-top: 5rem">
@@ -24,12 +20,13 @@
                                 >
                                     Отправить
                                 </b-button>
-                                <label class="mylabel" style="padding-left: 5rem;">Пожалуйста, введите
-                                    код с сообщения</label>
+                                <label class="mylabel" style="padding-left: 5rem;">
+                                    Пожалуйста, введите код с сообщения
+                                </label>
                                 <b-input
                                         class="myinput1"
                                         type="text"
-                                        placeholder=""
+                                        placeholder="eyJ1c2VybmFtZSI6Im5z......"
                                         style="width: 38rem;margin-left: 5rem;"
                                         id="verifytoken"
                                         v-model="verifytoken"
@@ -96,7 +93,11 @@
                             </div>
                             <div class="input__group__label" v-if="me">
                                 <label>
-                                    <router-link to="/Login/User/ChangePassword" class="mylabel_1">Сменить пароль
+                                    <router-link
+                                            class="mylabel_1"
+                                            :to="{name:'ChangePass'}"
+
+                                    >Сменить пароль
                                     </router-link>
                                 </label>
                             </div>
@@ -110,27 +111,25 @@
                         </div>
                     </div>
                 </b-form>
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {ME_QUERY} from '../queries'
+    import {ME_QUERY} from "../queries";
     import {
-        REFRESHTOKEN_MUTATION,
         UPDATEACCOUNT_MUTATION,
         VERIFYACCOUNT_MUTATION,
         RESENDACTIVATIONEMAIL_MUTATION
     } from "../mutations";
-    import BarMenu from './parts/BarMenu'
 
     export default {
         name: 'User',
-        components: {BarMenu},
         data() {
             return {
-                me: 'false',
+                me:null,
                 verified: 'false',
                 verifytoken: '',
                 refreshToken: localStorage.getItem('refreshToken').toString()
@@ -138,8 +137,11 @@
         },
         apollo: {
             me: {
-                query: ME_QUERY,
+                query: ME_QUERY
             },
+        },
+        created(){
+            this.$apollo.queries.me;
         },
         methods: {
         resendActivationEmail() {
@@ -210,38 +212,14 @@
                     }
                 })
         },
-        changeToken() {
-            this.$apollo
-                .mutate({
-                    mutation: REFRESHTOKEN_MUTATION,
-                    variables: {
-                        refreshToken: this.refreshToken
-                    }
-                })
-                .then(data => {
-                    localStorage.setItem('token', data.data.refreshToken.token)
-                    localStorage.setItem('refreshToken', data.data.refreshToken.refreshToken)
-                })
-        },
-
-    }
-    ,
-    watch:{
-        me: {
-            handler() {
-                console.log('application me', this.me);
-                if (localStorage.getItem('auth') && this.me == null) {
-                    this.changeToken();
-                    console.log('me', this.me)
-                    console.log(localStorage.getItem('token'))
-                }
-            },
-            immediate: true
-        },
     },
     }
 </script>
 <style>
+    .userBlockForm{
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
     .myinput1 {
         position: relative;
         background-color: #6BA0FF;

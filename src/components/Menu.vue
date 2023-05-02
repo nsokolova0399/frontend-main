@@ -1,26 +1,20 @@
 <template>
     <div class="container">
         <div class="row">
-            <BarMenu class="col-1 col-lg-1"/>
-            <div class="col-5 col-lg-5">
-                <label style="font-size: 2.5rem; color: #173A56;font-weight: bold;padding-left: 4rem;margin-top: 11rem;">Теперь
-                    Вам доступны возможности для тестирования cbr системы. Вы можете перейти на страницу
-                    <router-link to="/Login/Application" class="url">приложения</router-link>
-                    .</label>
-            </div>
+        <div class="col-2 col-lg-2">
+            <BarMenu />
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-12 text-right">
-                <img src="./assest_components/amico4.png"
-                     style="min-width: 20.5rem; width:40rem;max-width: 65.5rem; margin-top: -27rem;"/>
+            <div class="col-10 col-lg-10" style="align-items: center">
+                <router-view></router-view>
             </div>
         </div>
     </div>
-
 </template>
 
 
 <script>
+    import {ME_QUERY, DATASETS_QUERY} from "../queries";
+    import {REFRESHTOKEN_MUTATION,} from "../mutations";
     import BarMenu from './parts/BarMenu'
 
     export default {
@@ -30,14 +24,49 @@
         },
         data: () => ({
             isShowDropdown: false,
+            me: null,
         }),
+        apollo: {
+            me: {
+                query: ME_QUERY
+            },
+            datasetsQuery: {
+                query: DATASETS_QUERY
+            },
+        },
+        mounted() {
+            this.changeToken()
+        },
+
         methods: {
             showDropdown() {
                 this.isShowDropdown = !this.isShowDropdown
-            }
-        },
-    }
+            },
+            logout() {
+                localStorage.removeItem('token')
+                localStorage.removeItem('refreshToken')
+                localStorage.removeItem('auth')
+            },
+            async changeToken() {
+                    this.$apollo
+                        .mutate({
+                            mutation: REFRESHTOKEN_MUTATION,
+                            variables: {
+                                refreshToken: localStorage.getItem('refreshToken')
+                            }
+                        })
+                        .then(data => {
+                            localStorage.setItem('token', data.data.refreshToken.token)
+                            localStorage.setItem('refreshToken', data.data.refreshToken.refreshToken)
+                            this.update;
+                        })
+                setTimeout(() => {this.changeToken() }, 300000)
+            },
 
+        },
+
+
+    }
 </script>
 <style>
     .url {

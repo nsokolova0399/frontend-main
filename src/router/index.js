@@ -30,39 +30,52 @@ const router =  new VueRouter({
             path: '/Login/Menu',
             name: 'Menu',
             meta:{requiresAuth:true},
+            props:true,
             component: ()=> import('../components/Menu'),
+            children: [
+                {
+                    path: '/Login/Menu/Greetings',
+                    name: 'GreetingsMenu',
+                    meta: {requiresAuth: true},
+                    props: true,
+                    component: () => import('../components/GreetingsMenu'),
+                },
+                {
+                path: '/Login/Menu/User',
+                name: 'User',
+                meta:{requiresAuth:true},
+                props:true,
+                component: ()=> import('../components/User'),
+                },
+                {
+                    path: '/Login/Menu/User/ChangePassword',
+                    name: 'ChangePass',
+                    meta:{requiresAuth:true},
+                    props:true,
+                    component: ()=> import('../components/ChangePass'),
+                },
+                {
+                    path: '/Login/Menu/Application',
+                    name: 'Application',
+                    meta:{requiresAuth:true},
+                    props:true,
+                    component: ()=> import('../components/Application'),
+                },
+            ]
         },
-        {
-            path: '/Login/User',
-            name: 'User',
-            meta:{requiresAuth:true},
-            component: ()=> import('../components/User'),
-        },
-        {
-            path: '/Login/User/ChangePassword',
-            name: 'ChangePass',
-            meta:{requiresAuth:true},
-            component: ()=> import('../components/ChangePass'),
-        },
-        {
-            path: '/Login/Application',
-            name: 'Application',
-            meta:{requiresAuth:true},
-            component: ()=> import('../components/Application'),
-        },
+
         {
             path: '/Auth-required',
-            component:{render:(h)=> h("h1",{class:"error__class"},["Auth required!"])},
+            component:{render:(h)=> h("h1",{class:"error__class"},["Требуется аутентификация!"])},
         },
         {
             path: '/:pathMatch(.*)*',
-            component:{render:(h)=> h("h1",{class:"error__class"},["404! Not Found!"])}
+            component:{render:(h)=> h("h1",{class:"error__class"},["404! Страница не найдена!"])}
         },
     ]
 })
 
 router.beforeEach((to, from, next) => {
-
     if(to.matched.some((route) => route.meta?.requiresAuth) ){
             if(localStorage.getItem('auth') === 'true')next()
             else next('/Auth-required')
@@ -71,5 +84,6 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
+
 export default router
 

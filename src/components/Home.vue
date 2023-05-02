@@ -29,7 +29,6 @@
     }
 </script>
 <style scoped>
-
     .greeting__1{
         color: #173A56;
         font-size: 4rem;
@@ -55,7 +54,6 @@
         padding-top: 8.5rem;
         position: relative;
     }
-
     .img_container img{
         position: relative;
         transition: all 2s ease-in-out;

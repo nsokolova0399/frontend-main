@@ -60,6 +60,7 @@ Vue.use(BootstrapVue);
 Vue.use(Vuelidate);
 Vue.use(Notifications);
 
+
 new Vue({
     router,
     apolloProvider,

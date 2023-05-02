@@ -19,13 +19,14 @@
 
 <style scoped>
     .navbar{
+        position: relative;
         height: 6em;
         background-color: white;
         box-shadow: 0 -.2em 0 .2em rgba(0, 0, 0, 0.1),
         0 .2em 0 .2em rgba(0, 0, 0, 0.1);
         left: 0;
         width: 100%;
-        margin-top: 17.5rem;
+        bottom: 0;
     }
 
     .navbar__brand_1{

@@ -1,76 +1,37 @@
 <template>
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <notifications position="top center" classes="my-notification"/>
-            <div class="col-2">
-                <BarMenu/>
-            </div>
-            <div class="col-9 blockApplication" v-if="me">
-                <div class="">
+            <div class="col-12 blockApplication" v-if="me" >
                     <DatasetCreate />
                     <DatasetUpload />
                     <DatasetKnn />
-                </div>
+                    <DatasetReport/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import BarMenu from './parts/BarMenu';
+    import {ME_QUERY} from "../queries";
     import DatasetCreate from './parts/DatasetCreate';
     import DatasetUpload from "./parts/DatasetUpload";
-    import {
-        REFRESHTOKEN_MUTATION,
-
-    } from "../mutations";
-    import {ME_QUERY, } from "../queries";
     import DatasetKnn from "./parts/DatasetKnn";
+    import DatasetReport from "./parts/DatasetReport";
 
     export default {
         name: "Application",
-        components: {DatasetKnn, DatasetUpload, BarMenu, DatasetCreate},
-        data() {
-            return {
-                me: null,
-            }
-        },
+        components: { DatasetCreate, DatasetUpload, DatasetKnn, DatasetReport },
+        data: () => ({
+            me: null,
+        }),
         apollo: {
             me: {
                 query: ME_QUERY
             },
-
         },
-        methods: {
-            changeToken: function () {
-                this.$apollo
-                    .mutate({
-                        mutation: REFRESHTOKEN_MUTATION,
-                        variables: {
-                            refreshToken: localStorage.getItem('refreshToken')
-                        }
-                    })
-                    .then(data => {
-                        localStorage.setItem('token', data.data.refreshToken.token)
-                        localStorage.setItem('refreshToken', data.data.refreshToken.refreshToken)
-                        this.update;
-                    })
-            },
-
-        },
-        watch: {
-            me: {
-                handler() {
-                    console.log('application me', this.me);
-                    if (localStorage.getItem('auth') && this.me == null) {
-                        this.changeToken();
-                        console.log('me', this.me)
-                        console.log(localStorage.getItem('token'))
-                    }
-                },
-                immediate: true
-            },
-
+        created(){
+            this.me=this.$apollo.queries.me;
         },
 
     }
@@ -83,6 +44,5 @@
     .blockApplication{
         margin-top:8rem;
     }
-
 
 </style>

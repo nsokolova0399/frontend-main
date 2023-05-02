@@ -48,7 +48,6 @@
                             <label class="mylabel1" v-else-if="$v.password1.$dirty && !$v.password1.minLength">
                                 Пароль должен быть минимум {{$v.password1.$params.minLength.min}} символов.
                             </label>
-
                         </span>
                         <span class="input__group__label">
                             <div class="mylabel" for="password2">Повторите пароль:</div>
@@ -66,15 +65,13 @@
                             </label>
                         </span>
                     </div>
-                    <div class="row mybutton__1 center" style="position: absolute;top:28rem;bottom: 5rem; left:37%">
+                    <div class="row">
                         <b-button
                                 type="submit"
-                                class="mybutton"
-                                style="width: 17rem;height: 4.4rem; border-radius: 4px;margin-top:20rem;"
+                                class="mybutton registrationButton"
                         >
                             Регистрация
                         </b-button>
-
                     </div>
                     <div class="row" style="position: absolute;bottom: 0">
                         <p class="label__1">Уже есть аккаунт?</p>
@@ -82,27 +79,32 @@
                                style="padding-left: 13rem;transition: all 1.2s ease; ">Войти</label>
                     </div>
                 </b-form>
-
             </div>
             <div class="block__2 col-lg-6 col-md-12 col-xs-12 text-center">
                 <img src="./assest_components/amico3.png" style="height: 40.2rem;width: 53.3rem;"/>
             </div>
         </div>
+        <ModalWindow v-if="open" />
     </div>
 </template>
 
 <script>
     import {SIGNUP_MUTATION} from '../mutations';
     import {email, required, minLength} from 'vuelidate/lib/validators';
+    import ModalWindow from './parts/ModalWindow'
 
     export default {
         name: 'SignUp',
+        components: {
+            ModalWindow
+        },
         data() {
             return {
                 username: '',
                 email: '',
                 password1: '',
                 password2: '',
+                open:false
             }
         },
         validations: {
@@ -129,7 +131,7 @@
                             return
                         }
                         if (data.data.register.errors == null) {
-                            this.$router.replace('/LogIn');
+                            this.open = true
                         } else {
                             if (data.data.register.errors.email != null) {
                                 this.$notify({
@@ -174,7 +176,7 @@
                         });
                     })
             },
-        }
+        },
     }
 
 </script>
@@ -211,6 +213,14 @@
         color: #173A56;
         border-color: #bcd0e5;
         background: #9fcaf6;
+    }
+    .registrationButton{
+        position: absolute;
+        width: 17rem;
+        height: 4.4rem;
+        border-radius: 4px;
+        top:52rem;
+        margin-left: 15rem;
     }
 
 </style>

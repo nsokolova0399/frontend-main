@@ -2,16 +2,16 @@
     background-color:#6fa1fc;
     border-radius: 5px;
     padding: 2rem 0.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 .datasetcreate__first-title-label{
-    color: #173A56;
+    color: #ffffff;
     font-size:1.8rem;
     font-weight: bold;
 }
 .datasetcreate-label{
     color:white;
-    margin-top: 0.5rem;
     margin-top: 0.5rem;
 }
 .row{
@@ -38,19 +38,23 @@
 
 .datasetcreate__plusmin-button{
     cursor: pointer;
-    background-color: #173A56;
+    background-color: #ffffff;
     border-radius: 10px;
     border: none;
     padding: 0;
     width: 2rem;
+    color: #173A56;
 }
 .datasetcreate-button{
-    background-color: #173A56;
+    color: #173A56;
+    background-color: #ffffff;
     border-radius: 10px;
     border: none;
     margin-top: 2rem;
     display: flex;
-    align-content: end;
+    align-content: flex-end;
+    padding:1rem 2rem 1rem 2rem;
+
 }
 .datasetcreate-button:hover,.datasetcreate-button:active, .datasetcreate__plusmin-button:hover,.datasetcreate__plusmin-button:active{
     background-color: #2a5f89;
@@ -86,13 +90,6 @@ b-form-file{
     margin: 0;
 }
 
-.dataset__label{
-    margin-top: 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #173A56;
-    margin-right: -5rem;
-}
 
 .select-b-select-b{
     border-radius: 8px;
@@ -101,4 +98,37 @@ b-form-file{
     margin-top: 1rem;
     position: absolute;
     font-size: 1.5rem;
+}
+
+.top{
+    margin-top: 1rem
+}
+
+.tableDataset {
+    background-color: white;
+    margin: 0rem;
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    height:30rem;
+    overflow: scroll;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 1.5rem;
+}
+
+.tableParametr{
+    border:1px solid #4d8dff;
+    margin: 0;
+}
+
+.table{
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.imgMenu{
+    height: 5rem;
+    width: 5rem;
+    margin-top: 1rem;
 }

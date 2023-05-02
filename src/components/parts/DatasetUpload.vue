@@ -2,7 +2,7 @@
     <div>
         <div class="row dataset-form">
             <notifications position="top center" classes="my-notification"/>
-            <div class="col-12">
+            <div class="col-12" v-if="this.listDataset.length !== 0">
                 <div class="row">
                     <div class="col-12">
                         <label class="datasetcreate__first-title-label">Заполните
@@ -35,7 +35,6 @@
                                 Введите название датасета
                             </label>
                         </div>
-
                         <div class="col-6 ">
                             <b-form-file
                                     accept="text/csv"
@@ -45,13 +44,16 @@
                                     browse-text="Загрузить"
                                     class=""
                             >{{this.file}}
-
                             </b-form-file>
-
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div class="col-12" v-if="this.listDataset.length === 0">
+                <label class="datasetcreate__first-title-label">
+                    Пожалуйста, создайте хотя бы один датасет
+                </label>
             </div>
 
         </div>
@@ -59,24 +61,26 @@
 </template>
 
 <script>
-    import "./Dataset.css";
-    import {DATASETVALUEUPLOAD_MUTATION} from "../../mutations";
+    import "../Dataset.css";
     import {ME_QUERY, DATASETS_QUERY} from "../../queries";
+    import {DATASETVALUEUPLOAD_MUTATION} from "../../mutations";
     import {required} from 'vuelidate/lib/validators';
 
     export default {
         name: "DatasetUpload",
-        props:['newdatasetsQuery'],
-
         data() {
             return {
+                me:null,
+                datasetsQuery:null,
                 file: '',
                 selectedTitleDataset:'',
-                listDataset: [{
-                    title: '',
+                listDataset:[{
+                    title:''
                 }],
-
             }
+        },
+        validations: {
+            selectedTitleDataset:{required},
         },
         apollo: {
             me: {
@@ -86,10 +90,6 @@
                 query: DATASETS_QUERY
             },
         },
-        validations: {
-            selectedTitleDataset:{required},
-        },
-
         methods: {
             upload({target: {files = []}}) {
                 if (this.$v.selectedTitleDataset === '') {
@@ -126,21 +126,18 @@
                         })
                 }
 
-            }
+            },
         },
         watch: {
             datasetsQuery: function () {
                 this.listDataset = [];
                 let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
-                    for(let i = 0; i < this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result.length; i++){
+                for(let i = 0; i < arr.length; i++){
                     if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
                         this.listDataset.push(arr[i])
                     }
                 }
-                this.$emit('update:list', this.listDataset)
             }
         },
-
     }
-
 </script>

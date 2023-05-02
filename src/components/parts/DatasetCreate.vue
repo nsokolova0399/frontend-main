@@ -5,7 +5,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <label class="datasetcreate__first-title-label">Создайте датасет</label>
+                        <label class="datasetcreate__first-title-label">Создайте структуру датасета</label>
                     </div>
                 </div>
                 <div class="row">
@@ -35,8 +35,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5">
-                        <label class="datasetcreate-label">Параметры датасета</label>
+                    <div class="col-3">
+                        <label class="datasetcreate-label">Параметр</label>
+                    </div>
+                    <div class="col-3">
+                        <label class="datasetcreate-label">Описание</label>
                     </div>
                     <div class="col-5">
                         <label class="datasetcreate-label">Тип</label>
@@ -44,39 +47,29 @@
 
                 </div>
                 <div class="row">
-
-                    <div class="col-2">
+                    <div class="col-3">
                     <span :key="index" v-for="(item, index) in DataSet">
                         <b-input
-                                v-model="item.first"
+                                v-model="item.title"
                                 class="datasetcreate__title-input dataset"
-                                :class="{'is-error': $v.DataSet.$each[index].first.required &&  $v.DataSet.$each[index].first.integer}"
+                                :class="{'is-error': $v.DataSet.$each[index].title.required}"
                         >
                         </b-input>
-                        <label class="datasetcreate__title-label" v-if="!$v.DataSet.$each[index].first.required">
+                        <label class="datasetcreate__title-label" v-if="!$v.DataSet.$each[index].title.required">
                             Введите параметр
-                        </label>
-                        <label class="datasetcreate__title-label" v-if="!$v.DataSet.$each[index].first.integer">
-                            Введите целое число
                         </label>
                     </span>
                     </div>
-                    <div class="col-1">
-                        <div class="datasetcreate__param" :key="index" v-for="(item, index) in DataSet">x</div>
-                    </div>
-                    <div class="col-2">
+                    <div class="col-3">
                     <span :key="index" v-for="(item, index) in DataSet">
                         <b-input
-                                v-model="item.second"
+                                v-model="item.description"
                                 class="datasetcreate__title-input dataset"
-                                :class="{'is-error': $v.DataSet.$each[index].second.required &&  $v.DataSet.$each[index].first.integer}"
+                                :class="{'is-error': $v.DataSet.$each[index].description.required}"
                         >
                         </b-input>
-                         <label class="datasetcreate__title-label" v-if="!$v.DataSet.$each[index].second.required">
-                            Введите параметр
-                        </label>
-                        <label class="datasetcreate__title-label" v-if="!$v.DataSet.$each[index].second.integer">
-                            Введите целое число
+                         <label class="datasetcreate__title-label" v-if="!$v.DataSet.$each[index].description.required">
+                            Введите описание
                         </label>
                     </span>
                     </div>
@@ -97,10 +90,8 @@
                                    v-if="!$v.DataSet.$each[index].type.required">
                             Введите тип
                         </label>
-
                         </span>
                     </div>
-
                     <div class="col-1">
                         <b-button class="datasetcreate__plusmin-button"
                                   @click="delData"
@@ -117,12 +108,11 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <b-button class="datasetcreate-button float-right" @click="datasetCreate">
+                        <b-button class="datasetcreate-button float-right styleButton" @click="datasetCreate">
                             Создать датасет
                         </b-button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -130,9 +120,9 @@
 
 <script>
     import {DATASETCREATE_MUTATION} from "../../mutations";
-
-    import "./Dataset.css";
-    import {required, integer} from 'vuelidate/lib/validators';
+    import {ME_QUERY, DATASETS_QUERY} from "../../queries";
+    import "../Dataset.css";
+    import {required} from 'vuelidate/lib/validators';
 
     export default {
         name: "DatasetCreate",
@@ -141,32 +131,41 @@
                 id: 0,
                 titleTest: '',
                 titleSolution: '',
+                datasetsQuery:'',
                 newDataSet: [],
                 DataSet: [{
                     id: 0,
-                    first: '',
                     type: '',
-                    second: ''
+                    title: '',
+                    description:''
                 }],
                 file: '',
                 listID: [],
-                 }
+                listDataset:[{
+                    title:''
+                }]
+            }
         },
-
         validations: {
             DataSet: {
                 $each: {
-                    first: {required, integer},
-                    second: {required, integer},
+                    title: {required},
                     type: {required},
+                    description:{required}
                 }
             },
             titleTest:{required},
             titleSolution:{required},
         },
-
+        apollo: {
+            me: {
+                query: ME_QUERY
+            },
+            datasetsQuery: {
+                query: DATASETS_QUERY
+            },
+        },
         methods: {
-
             addData() {
                 if (this.$v.titleTest === '') {
                     return;
@@ -176,10 +175,10 @@
                 }
                 if (this.DataSet !== undefined) {
                     for (let i = 0; i < this.DataSet.length; i++) {
-                        if (this.$v.DataSet.$model[i].first === '') {
+                        if (this.$v.DataSet.$model[i].title === '') {
                             return;
                         }
-                        if (this.$v.DataSet.$model[i].second === '') {
+                        if (this.$v.DataSet.$model[i].description === '') {
                             return;
                         }
                         if (this.$v.DataSet.$model[i].type === '') {
@@ -190,9 +189,9 @@
                 this.id += 1
                 this.DataSet.push({
                     id: this.id,
-                    first: "",
+                    title: "",
                     type: "",
-                    second: ""
+                    description: ""
                 })
             },
             delData() {
@@ -202,21 +201,19 @@
                 }
             },
             datasetCreate() {
-                if (this.$v.DataSet.$model[this.id].first === '') {
+                if (this.$v.DataSet.$model[this.id].title === '') {
                     return;
                 }
-                if (this.$v.DataSet.$model[this.id].second === '') {
+                if (this.$v.DataSet.$model[this.id].description === '') {
                     return;
                 }
                 if (this.$v.DataSet.$model[this.id].type === '') {
                     return;
                 }
-
                 if (this.titleSolution !== "" && this.titleTest !== "") {
                     this.DataSet.forEach((value) => {
-                        this.newDataSet.push({"title": value.first + "x" + value.second, "type": value.type})
+                        this.newDataSet.push({"title": value.title, "type": value.type, "description" : value.description})
                     });
-
                     this.$apollo
                         .mutate({
                             mutation: DATASETCREATE_MUTATION,
@@ -234,7 +231,7 @@
                                 title: 'Успешное выполнение.',
                                 text: ''
                             });
-                            this.newDataSet = [];
+                            this.$apollo.queries.datasetsQuery.refresh();
                         })
                         .catch(error => {
                             this.$notify({
@@ -251,9 +248,19 @@
                     });
                 }
             },
-
         },
-
+        // watch: {
+        //     datasetsQuery: function () {
+        //         this.listDataset = [];
+        //         let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
+        //         for(let i = 0; i < this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result.length; i++){
+        //             if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
+        //                 this.listDataset.push(arr[i])
+        //             }
+        //         }
+        //     },
+        //
+        // },
     }
 </script>
 

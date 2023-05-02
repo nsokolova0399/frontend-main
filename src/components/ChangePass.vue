@@ -2,15 +2,11 @@
     <div class="container">
         <div class="row">
             <notifications position="top center" classes="my-notification"/>
-            <div class="col-3">
-                <BarMenu/>
-            </div>
-            <div class="col-9" style="margin-top: 7rem">
-                <b-form method="POST" @submit.prevent="changePassword"
-                        style="height: 50rem; width: 53.5rem; background-color:#4d8dff; border-radius:20% 50% / 15% 30%">
-                    <div class="row" v-if="me">
+            <div class="col-12 userBlockForm">
+                <b-form method="POST" @submit.prevent="changePassword" class="userForm">
+                    <div v-if="me">
                         <div class="input__group__label" v-if="me" style="padding-top: 5rem;">
-                            <label class="mylabel" style=" padding-left: 7rem">Старый пароль:</label>
+                            <label class="mylabel" style="padding-left: 7rem;position: relative">Старый пароль:</label>
                             <b-input
                                     v-model="passwordold"
                                     :class="{invalid: $v.passwordold.$dirty && !$v.passwordold.required}"
@@ -27,7 +23,7 @@
                             </label>
                         </div>
                         <div class="input__group__label" v-if="me">
-                            <label class="mylabel" style="padding-left: 7rem">Новый пароль:</label>
+                            <label class="mylabel" style="padding-left: 7rem; position: relative">Новый пароль:</label>
                             <b-input
                                     class="myinput1"
                                     v-model="password1"
@@ -48,7 +44,7 @@
                             </label>
                         </div>
                         <div class="input__group__label" v-if="me">
-                            <label class="mylabel" style="padding-left: 7rem">Повторите
+                            <label class="mylabel" style="padding-left: 7rem; position: relative">Повторите
                                 пароль:</label>
                             <b-input
                                     class="myinput1"
@@ -87,16 +83,14 @@
 
 <script>
     import {ME_QUERY} from "../queries";
-    import {REFRESHTOKEN_MUTATION, CHANGEPASSWORD_MUTATION} from "../mutations";
-    import BarMenu from './parts/BarMenu'
+    import { CHANGEPASSWORD_MUTATION} from "../mutations";
+
     import {minLength, required} from "vuelidate/lib/validators";
 
     export default {
         name: "ChangePass",
-        components: {BarMenu},
         data() {
             return {
-                me: 'false',
                 passwordold: '',
                 password1: '',
                 password2: '',
@@ -110,8 +104,11 @@
         },
         apollo: {
             me: {
-                query: ME_QUERY,
+                query: ME_QUERY
             },
+        },
+        created(){
+            this.$apollo.queries.me;
         },
         methods: {
             changePassword() {
@@ -137,7 +134,7 @@
                                 title: 'Успешное выполнение.',
                                 text: 'Пароль успешно изменен.',
                             }), 0);
-                            setTimeout(() => this.$router.replace('/Login/User'), 1000);
+                            setTimeout(() => this.$router.replace('/Login/Menu/User'), 3000);
                         } else {
                             if (data.data.passwordChange.errors.oldPassword !== undefined) {
                                 this.$notify({
@@ -162,29 +159,9 @@
                         });
                     })
             },
-            changeToken() {
-                this.$apollo
-                    .mutate({
-                        mutation: REFRESHTOKEN_MUTATION,
-                        variables: {
-                            refreshToken: this.refreshToken
-                        }
-                    })
-                    .then(data => {
-                        localStorage.setItem('token', data.data.refreshToken.token)
-                        localStorage.setItem('refreshToken', data.data.refreshToken.refreshToken)
-                        this.$apollo.queries.me.refresh();
-                    })
-            },
+
         },
-        watch: {
-            me: function () {
-                if (localStorage.getItem('auth') && this.me === null) {
-                    this.$forceUpdate();
-                    return this.changeToken();
-                }
-            },
-        },
+
     }
 </script>
 

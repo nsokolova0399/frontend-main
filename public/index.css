@@ -137,3 +137,13 @@ d@media only screen and (min-width : 250px) {
     background: #ffc4c4;
 }
 
+.userForm{
+    height: 50rem;
+    width: 53.5rem;
+    background-color:#4d8dff;
+    border-radius:20% 50% / 15% 30%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+

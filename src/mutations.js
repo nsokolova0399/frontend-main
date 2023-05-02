@@ -89,7 +89,7 @@ export const UPDATEACCOUNT_MUTATION = gql`
     }
 `
 export const VERIFYACCOUNT_MUTATION = gql`
-    mutation VerifyAccount($token: String!) {
+    mutation ($token: String!) {
         verifyAccount(
             token: $token
         )

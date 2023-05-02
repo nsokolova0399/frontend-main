@@ -13,6 +13,7 @@
     import BarUpper from '@/components/parts/BarUpper.vue';
     import BarFooter from '@/components/parts/BarFooter.vue';
     export default {
+
         components:{ BarFooter, BarUpper },
     }
 </script>

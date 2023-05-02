@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 
-
 export const ALL_USERS_QUERY = gql`
     query UsersQuery{
         users {
@@ -24,6 +23,69 @@ export const USER_QUERY = gql`
         }
     }
 `
+export const RESULTS_QUERY = gql`
+    query ResultsQuery {
+   resultsQuery {
+    result {
+      id
+      user{
+        id
+        username
+      }
+      title
+      matchPercentage
+      dataset{
+        id
+        title
+      }
+      solutionPredictValues{
+        id
+        value
+      }
+      algorithm{
+        id
+        title
+        type
+      }
+      info
+    }
+  }
+  }
+`
+
+export const DATASETS_QUERYID = gql`
+     query DatasetQuery($id: ID!){
+                               datasetQuery(id: $id) {
+                                    id
+                                    title
+                                    public
+                                    parameters {
+                                      id
+                                      title
+                                      type
+                                      description
+                                      values{
+                                        id
+                                        value
+                                      }
+                                    }
+                                    solutions {
+                                      id
+                                      title
+                                      description
+                                      values{
+                                        id
+                                        value
+                                      }
+                                    }
+                                    user {
+                                      id
+                                      username
+                                    }
+                                  }
+                    }
+`
+
 
 export const ME_QUERY = gql`
     query Me{
@@ -67,15 +129,3 @@ export const DATASETS_QUERY = gql`
     }
 `
 
-
-export const RESULTS_QUERY = gql`
-    query ResultsQuery{
-        resultsQuery {
-            result {
-                id
-                title
-                matchPercentage
-            }
-        }
-    }
-`
