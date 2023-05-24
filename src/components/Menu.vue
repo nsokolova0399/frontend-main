@@ -47,7 +47,7 @@
                 localStorage.removeItem('refreshToken')
                 localStorage.removeItem('auth')
             },
-            async changeToken() {
+            changeToken() {
                     this.$apollo
                         .mutate({
                             mutation: REFRESHTOKEN_MUTATION,

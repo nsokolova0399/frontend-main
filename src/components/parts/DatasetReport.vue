@@ -1,16 +1,17 @@
 <template>
-    <div class="row dataset-form">
+    <div>
+    <div class="row dataset-form" v-if="results.length !== 0">
         <notifications position="top center" classes="my-notification"/>
-                <div class="col-12 top" v-if="results.length !== 0">
+                <div class="col-12 top" >
                     <label class="datasetcreate__first-title-label">
                         Отчеты о полученных результатах
                     </label>
-                    <div class="col-12 tableDataset">
+                    <div class="col-12 tableDataset tableDatasetView1" style="margin: 0; padding-left: 5px" >
                         <div class="row">
                             <div class="col-3 tableParametr table">Название результата</div>
                             <div class="col-3 tableParametr table">Название датасета</div>
                             <div class="col-4 tableParametr table">Информация о параметрах</div>
-                            <div class="col-2 tableParametr table">Точность</div>
+                            <div class="col-2 tableParametr table">Процент совпадения</div>
                         </div>
                         <div class="row" v-for="(item,index) in this.results" :key="index">
                             <div class="col-3 tableParametr">{{item[0]}}</div>
@@ -20,12 +21,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 top" v-if="results.length === 0">
-                    <label class="datasetcreate__first-title-label">
-                        Пожалуйста, выполните алгоритм хотя бы для одного датасета
-                    </label>
-                </div>
             </div>
+        <div class="col-12 top" v-if="results.length === 0"></div>
+    </div>
 </template>
 
 <script>
@@ -48,6 +46,7 @@
         },
         watch:{
             resultsQuery:function(){
+                this.results = [];
                 let result = this.$apollo.queries.resultsQuery.vm.resultsQuery.result
                 for(let i = 0; i < result.length; i++){
                     if(result[i].user.username === this.$apollo.queries.me.vm.me.username){
@@ -60,5 +59,7 @@
 </script>
 
 <style>
-
+    .tableDatasetView1{
+        margin: 0;
+    }
 </style>

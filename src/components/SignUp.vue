@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row">
             <notifications position="top center" classes="my-notification"/>
-            <div class="block__1 col-lg-6 col-md-12 col-xs-12 ">
+            <div class="col-lg-6 col-md-12 col-xs-12" style="padding-top: 9rem; padding-bottom: 2rem;">
                 <b-form method="POST" @submit.prevent="signup" class="form"
-                        style="margin-top:-5rem;min-height: 52.6rem; width: 44.6rem; margin-right: auto; margin-left: auto">
+                        style="margin-top:-5rem; margin-bottom:5rem;min-height: 45.6rem; width: 44.6rem; margin-right: auto; margin-left: auto">
                     <div class="input__group" style="padding-top: 2.6rem">
                         <span class="input__group__label">
                             <div class="mylabel" for="username">Логин:</div>
@@ -42,9 +42,10 @@
                                     type="password"
                                     id="password1"
                                     style="width: 39.5rem;border-radius: 8px;"
-                                    placeholder="******">
+                                    placeholder="********">
                             </b-input>
-                            <label class="mylabel1" v-if="$v.password1.$dirty && !$v.password1.required">Введите пароль</label>
+                            <label class="mylabel1"
+                                   v-if="$v.password1.$dirty && !$v.password1.required">Введите пароль</label>
                             <label class="mylabel1" v-else-if="$v.password1.$dirty && !$v.password1.minLength">
                                 Пароль должен быть минимум {{$v.password1.$params.minLength.min}} символов.
                             </label>
@@ -58,7 +59,7 @@
                                     type="password"
                                     id="password2"
                                     style="width: 39.5rem;border-radius: 8px;"
-                                    placeholder="******">
+                                    placeholder="********">
                             </b-input>
                             <label class="mylabel1" v-if="($v.password1.$model !== $v.password2.$model)">
                                 Пароли не совпадают
@@ -66,37 +67,36 @@
                         </span>
                     </div>
                     <div class="row">
-                        <b-button
+                        <MyButtonLight
                                 type="submit"
                                 class="mybutton registrationButton"
                         >
                             Регистрация
-                        </b-button>
+                        </MyButtonLight>
                     </div>
-                    <div class="row" style="position: absolute;bottom: 0">
-                        <p class="label__1">Уже есть аккаунт?</p>
-                        <label @click="$router.push('/LogIn')" class="label__2"
-                               style="padding-left: 13rem;transition: all 1.2s ease; ">Войти</label>
+                    <div class="row" style="padding-left: 2rem; padding-top: 3rem;">
+                        <p @click="$router.push('/LogIn')" class="label__1 col-6">Уже есть аккаунт?</p>
+                        <p @click="$router.push('/LogIn')" class="label__2 col-6"
+                               style="padding-left: 13rem;transition: all 1.2s ease; ">Войти</p>
                     </div>
                 </b-form>
             </div>
-            <div class="block__2 col-lg-6 col-md-12 col-xs-12 text-center">
-                <img src="./assest_components/amico3.png" style="height: 40.2rem;width: 53.3rem;"/>
+            <div class="col-lg-6 col-md-12 col-xs-12 text-center" style="padding-top: 9rem; padding-bottom: 2rem;">
+            <img src="./assest_components/amico3.png" style="height: 35.2rem;width: 50.3rem;"/>
             </div>
         </div>
-        <ModalWindow v-if="open" />
     </div>
 </template>
 
 <script>
     import {SIGNUP_MUTATION} from '../mutations';
     import {email, required, minLength} from 'vuelidate/lib/validators';
-    import ModalWindow from './parts/ModalWindow'
+    import MyButtonLight from './UI/MyButtonLight'
 
     export default {
         name: 'SignUp',
         components: {
-            ModalWindow
+            MyButtonLight
         },
         data() {
             return {
@@ -104,7 +104,6 @@
                 email: '',
                 password1: '',
                 password2: '',
-                open:false
             }
         },
         validations: {
@@ -130,9 +129,7 @@
                             this.$v.$touch()
                             return
                         }
-                        if (data.data.register.errors == null) {
-                            this.open = true
-                        } else {
+                        if (data.data.register.errors != null) {
                             if (data.data.register.errors.email != null) {
                                 this.$notify({
                                     type: 'warn',
@@ -143,20 +140,35 @@
                                 this.$notify({
                                     type: 'warn',
                                     title: 'Предупреждение.',
-                                    text: 'Пользователь с таким почтовым адресом уже зарегистрирован.'
+                                    text: 'Пользователь с таким именем уже зарегистрирован.'
                                 });
                             } else if (data.data.register.errors.password2 != null) {
+                                if (data.data.register.errors.password2[0].message === 'This password is too short. It must contain at least 8 characters.') {
+                                    this.$notify({
+                                        type: 'warn',
+                                        title: 'Предупреждение.',
+                                        text: 'Пароль слишком короткий. Пожалуйста, измените его.'
+                                    });
+                                }
+                                if (data.data.register.errors.password2[0].message === 'This password is too common.') {
+                                    this.$notify({
+                                        type: 'warn',
+                                        title: 'Предупреждение.',
+                                        text: 'Пароль слишком распространен. Пожалуйста, измените его.'
+                                    });
+                                }
                                 if (data.data.register.errors.password2[0].message === 'This password is entirely numeric.') {
                                     this.$notify({
                                         type: 'warn',
                                         title: 'Предупреждение.',
                                         text: 'Пароль содержит только цифры. Пожалуйста, измените его.'
                                     });
-                                } else {
+                                }
+                                if (data.data.register.errors.password2[0].message === 'The two password fields didn’t match.') {
                                     this.$notify({
                                         type: 'warn',
                                         title: 'Предупреждение.',
-                                        text: 'Слишком простой пароль. Пожалуйста, измените его.'
+                                        text: 'Пароли не совпадают.'
                                     });
                                 }
                             } else {
@@ -166,6 +178,13 @@
                                     text: 'Пользователь уже зарегистрирован.',
                                 });
                             }
+                        }
+                        else{
+                            this.$notify({
+                                type: 'success',
+                                title: 'Успешное выполнение.',
+                                text: 'Вы успешно зарегистрировались. Вам на почту отправлено письмо. Пожалуйста, подтвердите регистрацию.'
+                            });
                         }
                     })
                     .catch((error) => {
@@ -178,49 +197,49 @@
             },
         },
     }
-
 </script>
 
 <style scoped>
-
     .myinput, .mybutton {
         font-size: 1.8rem;
         font-weight: bold;
     }
-.mylabel, .mylabel1,.myinput{
-    position: relative;
-}
-    .mybutton {
-        position: absolute;
-        background: white;
-        color: #173A56;
-        height: 2.4em;
-        border-color: #BCD0E5;
-        padding-left: .9em;
-        padding-right: .9em;
-        transition: all 1.1s ease;
-        border-radius: 4px;
-        font-weight: bold;
+
+    .mylabel, .mylabel1, .myinput {
+        position: relative;
     }
 
-    .mybutton:hover {
-        color: #173A56;
+
+    .mybutton{
+        background: white;
+        color:#173A56;
+        height: 2.4em;
+        border-color: #BCD0E5;
+        padding-left: .6em;
+        padding-right: .6em;
+        transition: all 1.2s ease;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-left:auto;
+        margin-right: auto;
+        margin-top: 2rem
+    }
+    .mybutton:hover{
+        color:#173A56;
         border-color: #BCD0E5;
         background: #BCD0E5;
     }
-
-    .mybutton:active, .mybutton:focus {
-        color: #173A56;
+    .mybutton:active,.mybutton:focus{
+        color:#173A56;
         border-color: #bcd0e5;
         background: #9fcaf6;
     }
-    .registrationButton{
-        position: absolute;
+
+    .registrationButton {
         width: 17rem;
         height: 4.4rem;
         border-radius: 4px;
-        top:52rem;
-        margin-left: 15rem;
+
     }
 
 </style>

@@ -1,33 +1,37 @@
 <template>
     <div class="tableDataset tableDatasetView">
-        <div class="row">
-            <div class="col-lg-3 tableParametr table">
+        <div class="row ">
+            <div class="col-lg-2 tableParametr table">
+                Название датасета
+            </div>
+            <div class="col-lg-4 tableParametr table">
                 Название параметра
             </div>
-            <div class="col-lg-3 tableParametr table">
+            <div class="col-lg-4 tableParametr table">
                 Описание параметра
             </div>
-            <div class="col-lg-3 tableParametr table">
+            <div class="col-lg-2 tableParametr table">
                 Тип
             </div>
-            <div class="col-lg-3 tableParametr table">
-                Значения
-            </div>
         </div>
-        <div class="row" v-for="(value, name, index) in tableData.parameters" :key="index">
-            <div class="col-lg-3 tableParametr">
-                {{value.title}}
+        <div class="row" v-for="(value, name, index) in tableData" :key="index">
+            <div class="col-lg-2 tableParametr">
+                {{value[0]}}
             </div>
-            <div class="col-lg-3 tableParametr">
-                {{value.description}}
+            <div class="col-lg-4 tableParametr">
+                <div v-for="(item, index) in value[1]" :key="index">
+                    {{item.title}}
+                </div>
             </div>
-            <div class="col-lg-3 tableParametr">
-                {{value.type}}
+            <div class="col-lg-4 tableParametr">
+                <div v-for="(item, index) in value[1]" :key="index">
+                    {{item.description}}
+                </div>
             </div>
-            <div class="col-lg-3 tableParametr">
-                    <div v-for="item in value.values" :key="item.id">
-                        <span >{{item.value}}</span>
-                    </div>
+            <div class="col-lg-2 tableParametr">
+                <div v-for="(item, index) in value[1]" :key="index">
+                    {{item.type}}
+                </div>
             </div>
         </div>
     </div>
@@ -35,34 +39,33 @@
 
 <script>
     import "../Dataset.css";
-    import {DATASETS_QUERY, DATASETS_QUERYID} from "../../queries";
+    import {ME_QUERY,DATASETS_QUERY} from "../../queries";
 
     export default {
         name: "TableDataset",
-        props: ['idDataset'],
         data() {
             return {
-                datasetQuery: '',
-                tableData: '',
+                datasetsQuery: '',
+                tableData: [],
+                me:'',
             }
         },
         apollo: {
-            datasetQuery: {
-                query: DATASETS_QUERYID,
-                variables() {
-                    return {
-                        id: this.idDataset
-                    }
-                }
+            me: {
+                query: ME_QUERY
             },
             datasetsQuery: {
                 query: DATASETS_QUERY
             },
         },
         watch: {
-            datasetQuery: function () {
-                this.tableData = this.$apollo.queries.datasetQuery.vm.datasetQuery;
-                console.log(this.tableData)
+            datasetsQuery: function () {
+                let result = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
+                for(let i = 0; i < result.length; i++){
+                    if(result[i].user.username === this.$apollo.queries.me.vm.me.username){
+                        this.tableData.push([result[i].title, result[i].parameters])
+                    }
+                }
             },
         }
     }
@@ -71,5 +74,9 @@
 <style>
     .tableDatasetView{
         margin: 2rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 </style>

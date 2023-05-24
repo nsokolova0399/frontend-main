@@ -9,8 +9,7 @@
                             <div class="col-11 input__group" style="padding-top: 5rem">
                                 <label class="mylabel"
                                        style="padding-left: 5rem;padding-right: 5rem;">
-                                    Подтвердите Ваш аккаунт. Вам на почту будет отправлен код, который необходимо ввести
-                                    ниже для активации учетной записи.
+                                    Пожалуйста, подтвердите регистрацию. Вам на почту будет отправлено письмо.
                                 </label>
                                 <b-button
                                         @click="resendActivationEmail"
@@ -19,26 +18,6 @@
                                         style="margin-left: 5rem; width: 15rem;height: 4.3rem; border-radius: 4px;"
                                 >
                                     Отправить
-                                </b-button>
-                                <label class="mylabel" style="padding-left: 5rem;">
-                                    Пожалуйста, введите код с сообщения
-                                </label>
-                                <b-input
-                                        class="myinput1"
-                                        type="text"
-                                        placeholder="eyJ1c2VybmFtZSI6Im5z......"
-                                        style="width: 38rem;margin-left: 5rem;"
-                                        id="verifytoken"
-                                        v-model="verifytoken"
-                                >
-                                </b-input>
-                                <b-button
-                                        @click="accountVerify"
-                                        class="mybutton"
-                                        type="submit"
-                                        style="margin-left: 5rem; width: 15rem;height: 4.3rem; border-radius: 4px; margin-top: 3rem"
-                                >
-                                    Подтвердить
                                 </b-button>
                                 <div class="col-2"></div>
                             </div>
@@ -101,17 +80,16 @@
                                     </router-link>
                                 </label>
                             </div>
-                            <b-button
+                            <MyButtonLight
                                     class="mybutton"
                                     variant="primary"
                                     type="submit"
                                     style="width: 15rem;height: 4.3rem;margin-left:27rem; border-radius: 4px; position:absolute"
                             >Сохранить
-                            </b-button>
+                            </MyButtonLight>
                         </div>
                     </div>
                 </b-form>
-
             </div>
         </div>
     </div>
@@ -121,12 +99,13 @@
     import {ME_QUERY} from "../queries";
     import {
         UPDATEACCOUNT_MUTATION,
-        VERIFYACCOUNT_MUTATION,
         RESENDACTIVATIONEMAIL_MUTATION
     } from "../mutations";
+    import MyButtonLight from './UI/MyButtonLight'
 
     export default {
         name: 'User',
+        components:{MyButtonLight},
         data() {
             return {
                 me:null,
@@ -157,41 +136,13 @@
                         this.$notify({
                             type: 'success',
                             title: 'Успешное выполнение.',
-                            text: 'Код успешно отправил.'
+                            text: 'Вам на почту отправлено письмо. Пожалуйста, подтвердите регистрацию.'
                         });
                     } else {
                         this.$notify({
                             type: 'error',
                             title: 'Ошибка.',
                             text: data.data.resendActivationEmail.errors
-                        });
-                    }
-                })
-        },
-        accountVerify() {
-            this.$apollo
-                .mutate({
-                    mutation: VERIFYACCOUNT_MUTATION,
-                    variables: {
-                        token: this.verifytoken,
-                    }
-                })
-                .then(data => {
-                    if (data.data.verifyAccount.success) {
-                        setTimeout(() =>
-                                this.$notify({
-                                    type: 'success',
-                                    title: 'Успешное выполнение.',
-                                    text: 'Ваш аккаунт успешно подтвержден.'
-                                })
-                            , 0);
-                        setTimeout(() => this.$apollo.queries.me.refresh(), 1000);
-                        setTimeout(() => this.verified = this.me.verified, 1500);
-                    } else {
-                        this.$notify({
-                            type: 'error',
-                            title: 'Ошибка.',
-                            text: 'Введен неверный код подтверждения.'
                         });
                     }
                 })
@@ -209,16 +160,22 @@
                     if (data.data.updateAccount.success) {
                         //this.$apollo.queries.me.refresh();
                         this.status = true
+                        this.$notify({
+                            type: 'success',
+                            title: 'Успешное выполнение.',
+                            text: 'Данные успешно изменены и сохранены.'
+                        });
                     }
                 })
         },
     },
+
     }
 </script>
 <style>
     .userBlockForm{
-        margin-top: 5rem;
-        margin-bottom: 5rem;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
     }
     .myinput1 {
         position: relative;

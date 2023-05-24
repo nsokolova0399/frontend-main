@@ -66,13 +66,13 @@
                             </label>
                         </div>
                         <div class="input__group__label">
-                            <b-button
+                            <MyButtonLight
                                     class="mybutton"
                                     variant="primary"
                                     type="submit"
                                     style="width: 15rem;margin-top:2rem;height: 4.3rem; ;margin-left:30rem; border-radius: 4px;"
                             >Сохранить
-                            </b-button>
+                            </MyButtonLight>
                         </div>
                     </div>
                 </b-form>
@@ -84,11 +84,14 @@
 <script>
     import {ME_QUERY} from "../queries";
     import { CHANGEPASSWORD_MUTATION} from "../mutations";
-
+    import MyButtonLight from './UI/MyButtonLight'
     import {minLength, required} from "vuelidate/lib/validators";
 
     export default {
         name: "ChangePass",
+        components:{
+            MyButtonLight
+        },
         data() {
             return {
                 passwordold: '',
@@ -166,6 +169,10 @@
 </script>
 
 <style>
+    .userBlockForm{
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+    }
     .mylabel1{
         position: relative;
     }

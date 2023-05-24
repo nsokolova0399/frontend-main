@@ -27,43 +27,57 @@ const router =  new VueRouter({
             component: ()=> import('../components/LogIn'),
         },
         {
+            path: '/PasswordRecovery',
+            name: 'PasswordRecovery',
+            meta:{requiresAuth:false},
+            component: ()=> import('../components/PasswordRecovery'),
+        },
+        {
+            path: '/NewPassword',
+            name: 'NewPassword',
+            meta: {requiresAuth: false},
+            component: () => import('../components/NewPassword'),
+        },
+        {
             path: '/Login/Menu',
             name: 'Menu',
             meta:{requiresAuth:true},
-            props:true,
             component: ()=> import('../components/Menu'),
             children: [
                 {
                     path: '/Login/Menu/Greetings',
                     name: 'GreetingsMenu',
                     meta: {requiresAuth: true},
-                    props: true,
                     component: () => import('../components/GreetingsMenu'),
                 },
                 {
-                path: '/Login/Menu/User',
-                name: 'User',
-                meta:{requiresAuth:true},
-                props:true,
-                component: ()=> import('../components/User'),
+                    path: '/Login/Menu/User',
+                    name: 'User',
+                    meta:{requiresAuth:true},
+                    component: ()=> import('../components/User'),
                 },
                 {
                     path: '/Login/Menu/User/ChangePassword',
                     name: 'ChangePass',
                     meta:{requiresAuth:true},
-                    props:true,
                     component: ()=> import('../components/ChangePass'),
                 },
                 {
                     path: '/Login/Menu/Application',
                     name: 'Application',
                     meta:{requiresAuth:true},
-                    props:true,
                     component: ()=> import('../components/Application'),
                 },
             ]
         },
-
+        {
+            path: '/SignUp/activate/(.*)*',
+            component: ()=> import('../components/parts/ModalWindow'),
+        },
+        {
+            path: '/SignUp/password-reset/(.*)*',
+            component: ()=> import('../components/NewPassword'),
+        },
         {
             path: '/Auth-required',
             component:{render:(h)=> h("h1",{class:"error__class"},["Требуется аутентификация!"])},

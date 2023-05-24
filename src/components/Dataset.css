@@ -101,12 +101,11 @@ b-form-file{
 }
 
 .top{
-    margin-top: 1rem
+    margin-top: 1rem;
 }
 
 .tableDataset {
     background-color: white;
-    margin: 0rem;
     padding-left: 1.8rem;
     padding-right: 1.8rem;
     height:30rem;
@@ -120,6 +119,7 @@ b-form-file{
 .tableParametr{
     border:1px solid #4d8dff;
     margin: 0;
+    word-break: break-word;
 }
 
 .table{

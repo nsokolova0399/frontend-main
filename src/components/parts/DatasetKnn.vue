@@ -4,37 +4,14 @@
     <div class="row dataset-form" v-if="this.listDataset.length !== 0">
         <div class="col-12">
             <div class="row">
-                <div class="col-4 top">
+                <div class="col-12 top">
                     <label class="datasetcreate__first-title-label">
-                        Выберите название датасета, чтобы посмотреть его параметры
+                        Просмотр датасета
                     </label>
-                </div>
-                <div class="col-4 top">
-                        <span :key="index" v-for="(item, index) in listDataset">
-                        <select
-                                v-model="selectedTitleDatasetView"
-                                class="select-b-select-b"
-                                :class="{'is-error': $v.selectedTitleDatasetView.required}"
-                        >
-                            <option disabled value="item">Выберите название датасета</option>
-                            <option v-for="item in listDataset" v-bind:key="item.id" v-bind:value="item.id">
-                                {{item.title}}
-                            </option>
-                        </select>
-                            </span>
-                    <label class="datasetcreate__title-label" style="margin-top: 4.5rem;"
-                           v-if="!$v.selectedTitleDatasetView.required">
-                        Введите название датасета
-                    </label>
-                </div>
-                <div class="col-4">
-                    <b-button class="datasetcreate-button float-right styleButton" @click="datasetView">
-                        Посмотреть датасет
-                    </b-button>
                 </div>
             </div>
-            <div class="row" v-if="openTable">
-                <TableDataset v-bind:idDataset="selectedTitleDatasetView"/>
+            <div class="row">
+                <TableDataset/>
             </div>
         </div>
     </div>
@@ -55,7 +32,7 @@
                 </div>
                 <div class="col-6">
                     <label class="datasetcreate-label">
-                        Количество ближайших точек
+                        Количество соседей
                     </label>
                 </div>
             </div>
@@ -98,7 +75,7 @@
             <div class="row">
                 <div class="col-6">
                     <label class="datasetcreate-label">
-                        Процент тестовой выборки
+                        Размер тестовой выборки
                     </label>
                 </div>
                 <div class="col-6">
@@ -118,7 +95,7 @@
                     >
                     </b-input>
                     <label class="datasetcreate__title-label" v-if="!$v.testSize.required">
-                        Введите процент тестовой выборки
+                        Введите размер тестовой выборки
                     </label>
                     <label class="datasetcreate__title-label" v-if="!$v.testSize.floatReg">
                         Введите число от 0 до 1, например: 0.2
@@ -150,8 +127,8 @@
             </div>
             <div class="row" v-if="this.runalgorithm"
                  style="padding-left:2rem;padding-right: 5rem;padding-top:2rem;padding-bottom: 1.5rem;">
-                <div class="col-3">
-                    <label class="mylabel" style=" padding-left:1rem;color: #173A56;font-size:2rem">Точность: </label>
+                <div class="col-4">
+                    <label class="mylabel" style="color: #173A56;font-size:2rem">Процент совпадения: </label>
                 </div>
                 <div class="col-5" style="padding-bottom: 4rem;">
                     <b-input
@@ -198,7 +175,6 @@
                 listDataset: [{
                     title: '',
                 }],
-                openTable: false
             }
         },
         apollo: {
@@ -227,17 +203,6 @@
                     if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
                         this.listDataset.push(arr[i])
                     }
-                }
-            },
-            datasetView() {
-                if (this.selectedTitleDatasetView !== '') {
-                    this.openTable = true
-                } else {
-                    this.$notify({
-                        type: 'warn',
-                        title: 'Пожалуйста, выберите название датасета.',
-                        text: ''
-                    });
                 }
             },
             runalgorithmKnn() {

@@ -5,7 +5,7 @@
                 <img src="../assest_components/navbar.png" style="height: 3em;" />
             </b-navbar-brand>
             <span class="navbar__brand_1">
-                    А-05-19 Соколова А.С. ПМИИ ИВТИ МЭИ г.Москва
+                    МЭИ ПМИИ ИВТИ А-05-19 Соколова А.С. г.Москва
                 </span>
         </div>
     </b-navbar>

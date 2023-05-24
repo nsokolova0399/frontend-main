@@ -3,18 +3,14 @@
         <div class="row block__row">
             <div class="block_1 col-lg-7 col-md-12 col-xs-12 text-center">
                 <div class="img_container">
-                    <img class="im_2" src="./assest_components/amico.png" style="height: 50rem; width: 50rem;" />
-                    <img class="im_1" src="./assest_components/amico2.png" style="height: 50rem; width: 50rem;" />
+                    <img class="im_2" src="./assest_components/amico.png" style="height: 47rem; width: 47rem;" />
+                    <img class="im_1" src="./assest_components/amico2.png" style="height: 47rem; width: 47rem;" />
                 </div>
             </div>
             <div class="block_2 col-lg-5 col-md-12 col-xs-12">
                 <div class="greeting__1">Добро пожаловать в научный кабинет</div>
                 <div class="greeting__2">Чтобы протестировать систему, необходимо зарегистироваться.</div>
-                <div class="greeting__3">
-                    <my-button-dark class="newgreeting">
-                        Подробнее про систему
-                    </my-button-dark>
-                </div>
+
             </div>
         </div>
     </div>
@@ -22,10 +18,8 @@
 </template>
 
 <script>
-    import MyButtonDark from "./UI/MyButtonDark";
     export default {
         name: 'Home',
-        components: {MyButtonDark}
     }
 </script>
 <style scoped>

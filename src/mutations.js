@@ -153,6 +153,28 @@ export const DATASETVALUEUPLOAD_MUTATION = gql`
         }
     }
 `
+export const SENDPASSWORDRESETEMAIL_MUTATION = gql`
+    mutation SendPasswordResetEmail($email: String!){
+        sendPasswordResetEmail(
+            email:$email,
+        ){
+            success
+            errors
+        }
+    }
+`
+export const PASSWORDRESET_MUTATION = gql`
+    mutation PasswordReset($token: String!,$newPassword1:String!,$newPassword2:String!){
+        passwordReset(
+            token:$token,
+            newPassword1:$newPassword1,
+            newPassword2:$newPassword2
+        ){
+            success
+            errors
+        }
+    }
+`
 export const ALGORITHMKNN_MUTATION = gql`
     mutation RunAlgorithmKnn($k:Int!, $datasetId:ID!,$testSize:Float,$title:String){
         runAlgorithmKnn(input:

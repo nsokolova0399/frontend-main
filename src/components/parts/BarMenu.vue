@@ -41,9 +41,7 @@
                                 <img src="../assest_components/arrow2.png" style="height: 2rem; width: 2rem;"/>
                             </span>
                         </div>
-
             </div>
-
     </div>
 </template>
 

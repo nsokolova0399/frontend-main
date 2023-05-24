@@ -13,16 +13,13 @@
     import BarUpper from '@/components/parts/BarUpper.vue';
     import BarFooter from '@/components/parts/BarFooter.vue';
     export default {
-
         components:{ BarFooter, BarUpper },
     }
 </script>
 
 <style>
-
     .app{
         font-size: 10px;
         font-family: 'Poppins', sans-serif;
     }
-
 </style>

@@ -36,11 +36,9 @@
 <script>
     import MyButtonDark from "@/components/UI/MyButtonDark";
     import MyButtonLight from "@/components/UI/MyButtonLight";
-
     export default {
         name: "BarUpper",
         components: {MyButtonLight, MyButtonDark},
-
     }
 </script>
 

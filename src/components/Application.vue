@@ -2,12 +2,16 @@
     <div class="container" >
         <div class="row">
             <notifications position="top center" classes="my-notification"/>
-            <div class="col-12 blockApplication" v-if="me" >
+            <div class="col-12 blockApplication" v-if="this.me.verified" >
                     <DatasetCreate />
                     <DatasetUpload />
                     <DatasetKnn />
                     <DatasetReport/>
             </div>
+            <div  class="col-12 blockApplication"  v-if="!this.me.verified">
+                <h1>Пожалуйста, подтвердите регистрацию.</h1>
+            </div>
+
         </div>
     </div>
 </template>
@@ -23,7 +27,7 @@
         name: "Application",
         components: { DatasetCreate, DatasetUpload, DatasetKnn, DatasetReport },
         data: () => ({
-            me: null,
+            me: null
         }),
         apollo: {
             me: {
@@ -32,8 +36,7 @@
         },
         created(){
             this.me=this.$apollo.queries.me;
-        },
-
+        }
     }
 </script>
 
@@ -43,6 +46,7 @@
      }
     .blockApplication{
         margin-top:8rem;
+        margin-bottom: 8rem;
     }
 
 </style>

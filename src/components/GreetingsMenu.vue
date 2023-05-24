@@ -40,24 +40,13 @@
 </script>
 
 <style>
-    .url {
-        color: #173A56;
-        text-decoration: none;
-    }
-    .url:hover {
-        color: #02897A;
-        text-decoration: none;
-    }
-    .greet1, .greet2{
-
-    }
     .greet1{
         z-index: 2;
-        margin-top: 10rem;
-        font-size: 2.5rem;
+        margin-top: 5rem;
+        margin-bottom: 9rem;
+        font-size: 2rem;
         color: #173A56;
         font-weight: bold;
-
     }
     .greet2{
         position: relative;

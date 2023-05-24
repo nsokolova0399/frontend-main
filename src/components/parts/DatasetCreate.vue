@@ -108,7 +108,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <b-button class="datasetcreate-button float-right styleButton" @click="datasetCreate">
+                        <b-button style="padding-bottom: 1rem" class="datasetcreate-button float-right " @click="datasetCreate">
                             Создать датасет
                         </b-button>
                     </div>
@@ -193,6 +193,7 @@
                     type: "",
                     description: ""
                 })
+
             },
             delData() {
                 if (this.DataSet.length > 1) {
@@ -201,6 +202,7 @@
                 }
             },
             datasetCreate() {
+
                 if (this.$v.DataSet.$model[this.id].title === '') {
                     return;
                 }
@@ -214,6 +216,7 @@
                     this.DataSet.forEach((value) => {
                         this.newDataSet.push({"title": value.title, "type": value.type, "description" : value.description})
                     });
+                    console.log(this.newDataSet)
                     this.$apollo
                         .mutate({
                             mutation: DATASETCREATE_MUTATION,
@@ -249,18 +252,18 @@
                 }
             },
         },
-        // watch: {
-        //     datasetsQuery: function () {
-        //         this.listDataset = [];
-        //         let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
-        //         for(let i = 0; i < this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result.length; i++){
-        //             if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
-        //                 this.listDataset.push(arr[i])
-        //             }
-        //         }
-        //     },
-        //
-        // },
+        watch: {
+            datasetsQuery: function () {
+                this.listDataset = [];
+                let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
+                for(let i = 0; i < this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result.length; i++){
+                    if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
+                        this.listDataset.push(arr[i])
+                    }
+                }
+            },
+
+        },
     }
 </script>
 

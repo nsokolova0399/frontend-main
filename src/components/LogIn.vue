@@ -3,7 +3,7 @@
         <div class="row">
             <notifications position="top center" classes="my-notification"/>
             <div class="block__1 col-lg-6 col-md-12 col-xs-12 ">
-                <b-form method="POST" @submit.prevent="login" class="form" style="height: 33.7rem; width: 44.6rem; margin-right: auto; margin-left: auto">
+                <b-form method="POST" @submit.prevent="login" class="form" style="height: 30.7rem; width: 44.6rem; margin-right: auto; margin-left: auto">
                     <div class="input__group">
                         <div class="input__group__label" style="padding-top: 2.6rem">
                             <label class="mylabel">Логин:</label>
@@ -26,22 +26,23 @@
                                     type="password"
                                     autocomplete="on"
                                     id="password"
-                                    placeholder="******"
+                                    placeholder="*******"
                                     style="width: 39.5rem;border-radius: 8px;"
                             ></b-input>
                         </div>
-                        <div class="mybutton__1">
-                            <b-button
+                        <div class="row">
+                            <MyButtonLight
                                     class="mybutton"
                                     variant="primary"
                                     type="submit"
                                     style="width: 12rem;height: 4.4rem; border-radius: 4px;"
-                            >Войти
-                            </b-button>
+                            >
+                                Войти
+                            </MyButtonLight>
                         </div>
-                        <div class="row">
-                            <p class="label__1">Ещё не зарегистрированы? </p>
-                            <label @click="$router.push('/SignUp')" class="label__2" style="padding-left: 3.3rem;transition: all 1.2s ease;">Регистрация</label>
+                        <div class="row" style="padding-top: 2rem;padding-left: 5rem">
+                            <p @click="$router.push('/PasswordRecovery')" class="label__1 col-6">Забыли пароль? </p>
+                            <p @click="$router.push('/SignUp')" class="label__2 col-6">Регистрация</p>
                         </div>
                     </div>
                 </b-form>
@@ -55,9 +56,13 @@
 
 <script>
     import {LOGIN_MUTATION} from '../mutations';
+    import MyButtonLight from './UI/MyButtonLight'
 
     export default {
         name: 'LogIn',
+        components:{
+            MyButtonLight
+        },
         data () {
             return {
                 username: '',
@@ -79,7 +84,7 @@
                             this.$notify({
                                 type:'error',
                                 title: 'Ошибка.',
-                                text: 'Пожалуйста, введите действительные учетные данные пользователя.',
+                                text: 'Введите действительные учетные данные и попробуйте еще раз.',
                             });
                             localStorage.setItem('auth', false)
                         }else{
@@ -121,6 +126,9 @@
         transition: all 1.2s ease;
         border-radius: 4px;
         font-weight: bold;
+        margin-left:auto;
+        margin-right: auto;
+        margin-top: 2rem
     }
     .mybutton:hover{
         color:#173A56;

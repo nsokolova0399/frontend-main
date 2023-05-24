@@ -111,6 +111,7 @@ export const DATASETS_QUERY = gql`
                     id
                     title
                     type
+                    description
                 }
                 solutions{
                     id
