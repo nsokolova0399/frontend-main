@@ -18,13 +18,14 @@
                         </div>
 
                         <div class="mybutton__1">
-                            <MyButtonLight
+                            <b-button
+                                    class="btnLight"
                                     variant="primary"
                                     type="submit"
                                     style="width: 15rem;height: 3.4rem; border-radius: 4px;font-size: 1.5rem; margin:1rem"
                             >
                                 Отправить код
-                            </MyButtonLight>
+                            </b-button>
                         </div>
 
                     </div>
@@ -36,14 +37,12 @@
 </template>
 
 <script>
-    import './Dataset.css'
-    import MyButtonLight from './UI/MyButtonLight'
+    import '../assets/Dataset.css'
     import {SENDPASSWORDRESETEMAIL_MUTATION} from '../mutations';
 
 
     export default {
         name: "PasswordRecovery",
-        components:{MyButtonLight},
         data(){
             return{
                 email:''

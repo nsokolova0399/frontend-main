@@ -32,7 +32,8 @@
                                     </option>
                                 </select>
                             </span>
-                            <label class="datasetcreate__title-label" style="margin-top: 3.5rem;" v-if="!$v.selectedTitleDataset.required">
+                            <label class="datasetcreate__title-label" style="margin-top: 3.5rem;"
+                                   v-if="!$v.selectedTitleDataset.required">
                                 Введите название датасета
                             </label>
                         </div>
@@ -60,25 +61,26 @@
 </template>
 
 <script>
-    import "../Dataset.css";
+    import "../../assets/Dataset.css";
     import {ME_QUERY, DATASETS_QUERY} from "../../queries";
     import {DATASETVALUEUPLOAD_MUTATION} from "../../mutations";
     import {required} from 'vuelidate/lib/validators';
+
     export default {
         name: "DatasetUpload",
         data() {
             return {
-                me:null,
-                datasetsQuery:null,
+                me: null,
+                datasetsQuery: null,
                 file: '',
-                selectedTitleDataset:'',
-                listDataset:[{
-                    title:''
+                selectedTitleDataset: '',
+                listDataset: [{
+                    title: ''
                 }],
             }
         },
         validations: {
-            selectedTitleDataset:{required},
+            selectedTitleDataset: {required},
         },
         apollo: {
             me: {
@@ -92,8 +94,7 @@
             upload({target: {files = []}}) {
                 if (this.$v.selectedTitleDataset === '') {
                     return;
-                }
-                else {
+                } else {
                     this.file = files[0];
                     this.$apollo
                         .mutate({
@@ -129,7 +130,7 @@
             datasetsQuery: function () {
                 this.listDataset = [];
                 let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
-                for(let i = 0; i < arr.length; i++){
+                for (let i = 0; i < arr.length; i++) {
                     if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
                         this.listDataset.push(arr[i])
                     }

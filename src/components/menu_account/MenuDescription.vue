@@ -7,33 +7,33 @@
                     Слева находится выпадющее меню:
                 </p>
                 <p>
-                    <img src="./assest_components/menu_back.png" class="imgMenu"/>
+                    <img src="../../assets/menu_back.png" class="imgMenu"/>
                     — возвращение на текущую страницу;
                 </p>
                 <p>
-                    <img src="./assest_components/menu_office.png" class="imgMenu"/>
+                    <img src="../../assets/menu_office.png" class="imgMenu"/>
                     —  личный кабинет пользователя, где Вы можете изменить данные личного кабинета, сменить пароль;
                 </p>
                 <p>
-                    <img src="./assest_components/menu_api.png" class="imgMenu"/>
+                    <img src="../../assets/menu_api.png" class="imgMenu"/>
                     — приложение, где Вы можете создать структуру датасета, загрузить данные и просмотреть их, а также заполнить даннные для алгоритма KNN;
                 </p>
                 <p>
-                    <img src="./assest_components/menu_logout.png" class="imgMenu"/>
+                    <img src="../../assets/menu_logout.png" class="imgMenu"/>
                     — выход из личного кабинета.
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-12 greet2">
-                <img src="./assest_components/amico4.png"/>
+                <img src="../../assets/amico4.png"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import './Dataset.css'
+    import '../../assets/Dataset.css'
     export default {
         name: "GreetingsMenu"
     }

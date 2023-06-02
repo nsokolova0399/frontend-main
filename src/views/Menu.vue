@@ -5,7 +5,12 @@
             <BarMenu />
         </div>
             <div class="col-10 col-lg-10" style="align-items: center">
-                <router-view></router-view>
+               <span v-if="this.$route.fullPath === '/Login/Menu'">
+                   <GreetingsMenu/>
+               </span>
+                <span v-else>
+                    <router-view></router-view>
+                </span>
             </div>
         </div>
     </div>
@@ -15,11 +20,13 @@
 <script>
     import {ME_QUERY, DATASETS_QUERY} from "../queries";
     import {REFRESHTOKEN_MUTATION,} from "../mutations";
-    import BarMenu from './parts/BarMenu'
+    import BarMenu from '../components/menu_account/BarMenu'
+    import MenuDescription from "../components/menu_account/MenuDescription";
 
     export default {
         name: 'Menu',
         components: {
+            GreetingsMenu: MenuDescription,
             BarMenu
         },
         data: () => ({

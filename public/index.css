@@ -96,8 +96,8 @@ d@media only screen and (min-width : 250px) {
 .error__class{
     font-size: 5rem;
     color: #02897A;
-    padding-left: 35%;
-    padding-top: 10%;
+    margin: 25.5rem auto 25.5rem auto;
+    text-align: center;
 }
 
 
@@ -141,3 +141,36 @@ d@media only screen and (min-width : 250px) {
     margin-right: auto;
 }
 
+.btnDark{
+    background: #02897A;
+    color:#ffffff;
+    height: 2.4em;
+    border-color: #BCD0E5;
+    padding-left: .9em;
+    padding-right: .9em;
+    transition: all 1.2s ease;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btnDark:hover{
+    color:#173A56;
+    border-color: #BCD0E5;
+    background: #BCD0E5;
+}
+
+.btnLight{
+    background: white;
+    color: #173A56;
+    height: 2.4em;
+    border-color: #BCD0E5;
+    padding-left: .9em;
+    padding-right: .9em;
+    transition: all 1.2s ease;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btnLight:hover{
+    color:#173A56;
+    border-color: #BCD0E5;
+    background: #BCD0E5;
+}

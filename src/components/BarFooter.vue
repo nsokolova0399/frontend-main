@@ -2,7 +2,7 @@
     <b-navbar toggleable="lg" class="navbar">
         <div class="container">
             <b-navbar-brand @click="$router.push('/')" class="navbar__brand">
-                <img src="../assest_components/navbar.png" style="height: 3em;" />
+                <img src="../assets/navbar.png" style="height: 3em;" />
             </b-navbar-brand>
             <span class="navbar__brand_1">
                     МЭИ ПМИИ ИВТИ А-05-19 Соколова А.С. г.Москва

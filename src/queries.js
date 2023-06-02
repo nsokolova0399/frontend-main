@@ -23,6 +23,7 @@ export const USER_QUERY = gql`
         }
     }
 `
+
 export const RESULTS_QUERY = gql`
     query ResultsQuery {
    resultsQuery {
@@ -37,10 +38,29 @@ export const RESULTS_QUERY = gql`
       dataset{
         id
         title
+         solutions{
+          values{
+            value
+          }
+        }
       }
+      
       solutionPredictValues{
         id
         value
+      }
+      testParameters{
+        values{
+          value
+        }
+        parameter{
+          id
+          title
+          values{
+          id
+          value
+          }
+        }
       }
       algorithm{
         id
@@ -52,6 +72,7 @@ export const RESULTS_QUERY = gql`
   }
   }
 `
+
 
 export const DATASETS_QUERYID = gql`
      query DatasetQuery($id: ID!){
@@ -112,6 +133,9 @@ export const DATASETS_QUERY = gql`
                     title
                     type
                     description
+                    values{
+                    value
+                    }
                 }
                 solutions{
                     id

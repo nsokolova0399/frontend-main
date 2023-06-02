@@ -13,6 +13,9 @@
             <div class="row">
                 <TableDataset/>
             </div>
+<div class="row">
+     <ScatterChart/>
+</div>
         </div>
     </div>
     <div class="row dataset-form" v-if="this.listDataset.length !== 0">
@@ -142,23 +145,26 @@
                 </div>
             </div>
         </div>
+
     </div>
-        </span>
+
+    </span>
 </template>
 
 
 <script>
-    import "../Dataset.css";
-    import {ME_QUERY,RESULTS_QUERY, DATASETS_QUERY} from "../../queries";
+    import "../../assets/Dataset.css";
+    import {ME_QUERY, RESULTS_QUERY, DATASETS_QUERY} from "../../queries";
     import {required, integer, helpers} from 'vuelidate/lib/validators';
     import {ALGORITHMKNN_MUTATION} from "../../mutations";
-    import TableDataset from "../parts/TableDataset"
+    import TableDataset from "./TableDataset"
+    import ScatterChart from "./Graph"
 
     const floatReg = helpers.regex('alpha', /^[0-9]*[.]?[0-9]+$/)
 
     export default {
         name: "DatasetKnn",
-        components: {TableDataset},
+        components: {TableDataset, ScatterChart},
         data() {
             return {
                 me: null,
@@ -184,8 +190,8 @@
             datasetsQuery: {
                 query: DATASETS_QUERY
             },
-            resultsQuery:{
-                query:RESULTS_QUERY
+            resultsQuery: {
+                query: RESULTS_QUERY
             }
         },
         validations: {
@@ -251,6 +257,7 @@
                         this.listDataset.push(arr[i])
                     }
                 }
+
             },
 
         },

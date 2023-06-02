@@ -67,12 +67,12 @@
                         </span>
                     </div>
                     <div class="row">
-                        <MyButtonLight
+                        <b-button
                                 type="submit"
-                                class="mybutton registrationButton"
+                                class="btnLight mybutton registrationButton"
                         >
                             Регистрация
-                        </MyButtonLight>
+                        </b-button>
                     </div>
                     <div class="row" style="padding-left: 2rem; padding-top: 3rem;">
                         <p @click="$router.push('/LogIn')" class="label__1 col-6">Уже есть аккаунт?</p>
@@ -82,7 +82,7 @@
                 </b-form>
             </div>
             <div class="col-lg-6 col-md-12 col-xs-12 text-center" style="padding-top: 9rem; padding-bottom: 2rem;">
-            <img src="./assest_components/amico3.png" style="height: 35.2rem;width: 50.3rem;"/>
+            <img src="../assets/amico3.png" style="height: 35.2rem;width: 50.3rem;"/>
             </div>
         </div>
     </div>
@@ -91,13 +91,8 @@
 <script>
     import {SIGNUP_MUTATION} from '../mutations';
     import {email, required, minLength} from 'vuelidate/lib/validators';
-    import MyButtonLight from './UI/MyButtonLight'
-
     export default {
         name: 'SignUp',
-        components: {
-            MyButtonLight
-        },
         data() {
             return {
                 username: '',

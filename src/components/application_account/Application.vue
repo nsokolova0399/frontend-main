@@ -17,15 +17,15 @@
 </template>
 
 <script>
-    import {ME_QUERY} from "../queries";
-    import DatasetCreate from './parts/DatasetCreate';
-    import DatasetUpload from "./parts/DatasetUpload";
-    import DatasetKnn from "./parts/DatasetKnn";
-    import DatasetReport from "./parts/DatasetReport";
+    import {ME_QUERY} from "../../queries";
+    import DatasetCreate from './DatasetCreate';
+    import DatasetUpload from "./DatasetUpload";
+    import DatasetKnn from "./DatasetKnn";
+    import DatasetReport from "./DatasetReport";
 
     export default {
         name: "Application",
-        components: { DatasetCreate, DatasetUpload, DatasetKnn, DatasetReport },
+        components: {DatasetCreate, DatasetUpload, DatasetKnn, DatasetReport },
         data: () => ({
             me: null
         }),

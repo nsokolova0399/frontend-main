@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import {VERIFYACCOUNT_MUTATION} from '../../mutations';
+    import {VERIFYACCOUNT_MUTATION} from '../mutations';
 
     export default {
         name: "ModalWindow",
@@ -43,7 +43,6 @@
                                 title: 'Успешное выполнение.',
                                 text: 'Регистрация успешно подтверждена.'
                             })
-                            // this.$router.replace('/LogIn')
                         } else {
                             this.$notify({
                                 type: 'error',

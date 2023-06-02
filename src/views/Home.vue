@@ -3,8 +3,8 @@
         <div class="row block__row">
             <div class="block_1 col-lg-7 col-md-12 col-xs-12 text-center">
                 <div class="img_container">
-                    <img class="im_2" src="./assest_components/amico.png" style="height: 47rem; width: 47rem;" />
-                    <img class="im_1" src="./assest_components/amico2.png" style="height: 47rem; width: 47rem;" />
+                    <img class="im_2" src="../assets/amico.png" style="height: 47rem; width: 47rem;" />
+                    <img class="im_1" src="../assets/amico2.png" style="height: 47rem; width: 47rem;" />
                 </div>
             </div>
             <div class="block_2 col-lg-5 col-md-12 col-xs-12">

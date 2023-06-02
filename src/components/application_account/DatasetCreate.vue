@@ -4,8 +4,16 @@
             <notifications position="top center" classes="my-notification"/>
             <div class="col-12">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-8">
                         <label class="datasetcreate__first-title-label">Создайте структуру датасета</label>
+                    </div>
+                    <div class="col-4">
+                        <b-button
+                                @click="clear"
+                                class="datasetcreate-button float-right"
+                        >
+                            Очистить
+                        </b-button>
                     </div>
                 </div>
                 <div class="row">
@@ -100,7 +108,7 @@
                     </div>
                     <div class="col-1">
                         <b-button class="datasetcreate__plusmin-button"
-                                  @click="addData()"
+                                  @click="addData"
                         >+
                         </b-button>
                     </div>
@@ -121,7 +129,7 @@
 <script>
     import {DATASETCREATE_MUTATION} from "../../mutations";
     import {ME_QUERY, DATASETS_QUERY} from "../../queries";
-    import "../Dataset.css";
+    import "../../assets/Dataset.css";
     import {required} from 'vuelidate/lib/validators';
 
     export default {
@@ -166,6 +174,16 @@
             },
         },
         methods: {
+            clear(){
+                this.titleTest = ''
+                this.titleSolution = ''
+                this.DataSet = [{
+                    id: 0,
+                    type: '',
+                    title: '',
+                    description:''
+                }]
+            },
             addData() {
                 if (this.$v.titleTest === '') {
                     return;
@@ -216,7 +234,6 @@
                     this.DataSet.forEach((value) => {
                         this.newDataSet.push({"title": value.title, "type": value.type, "description" : value.description})
                     });
-                    console.log(this.newDataSet)
                     this.$apollo
                         .mutate({
                             mutation: DATASETCREATE_MUTATION,

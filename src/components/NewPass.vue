@@ -32,14 +32,14 @@
                         </div>
 
                         <div class="mybutton__1">
-                            <MyButtonLight
-                                    class="mybutton"
+                            <b-button
+                                    class="mybutton btnLight"
                                     variant="primary"
                                     type="submit"
                                     style="width: 13rem;height: 3rem; border-radius: 4px;font-size: 1.5rem; margin:2rem auto 0 auto"
                             >
                                 Сохранить
-                            </MyButtonLight>
+                            </b-button>
                         </div>
 
                     </div>
@@ -50,13 +50,11 @@
 </template>
 
 <script>
-    import './Dataset.css'
-    import MyButtonLight from './UI/MyButtonLight'
+    import '../assets/Dataset.css'
     import {PASSWORDRESET_MUTATION} from '../mutations';
 
     export default {
         name: "NewPassword",
-        components:{ MyButtonLight },
         data(){
             return{
                 token:this.$route.path.substring(23),
@@ -66,7 +64,6 @@
         },
         methods:{
             newpassword(){
-                console.log(this.token)
                 this.$apollo
                     .mutate({
                         mutation: PASSWORDRESET_MUTATION,

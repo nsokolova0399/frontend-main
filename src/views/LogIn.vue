@@ -31,14 +31,14 @@
                             ></b-input>
                         </div>
                         <div class="row">
-                            <MyButtonLight
-                                    class="mybutton"
+                            <b-button
+                                    class="mybutton btnLight"
                                     variant="primary"
                                     type="submit"
                                     style="width: 12rem;height: 4.4rem; border-radius: 4px;"
                             >
                                 Войти
-                            </MyButtonLight>
+                            </b-button>
                         </div>
                         <div class="row" style="padding-top: 2rem;padding-left: 5rem">
                             <p @click="$router.push('/PasswordRecovery')" class="label__1 col-6">Забыли пароль? </p>
@@ -48,7 +48,7 @@
                 </b-form>
             </div>
             <div class="block__2 col-lg-6 col-md-12 col-xs-12 text-center" >
-                <img src="./assest_components/amico1.png" style="height: 38.5rem;width: 54.1rem;"/>
+                <img src="../assets/amico1.png" style="height: 38.5rem;width: 54.1rem;"/>
             </div>
         </div>
     </div>
@@ -56,13 +56,9 @@
 
 <script>
     import {LOGIN_MUTATION} from '../mutations';
-    import MyButtonLight from './UI/MyButtonLight'
 
     export default {
         name: 'LogIn',
-        components:{
-            MyButtonLight
-        },
         data () {
             return {
                 username: '',

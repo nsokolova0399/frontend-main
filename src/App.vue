@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import BarUpper from '@/components/parts/BarUpper.vue';
-    import BarFooter from '@/components/parts/BarFooter.vue';
+    import BarUpper from '@/components/BarUpper.vue';
+    import BarFooter from '@/components/BarFooter.vue';
     export default {
         components:{ BarFooter, BarUpper },
     }

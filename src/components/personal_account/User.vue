@@ -80,13 +80,13 @@
                                     </router-link>
                                 </label>
                             </div>
-                            <MyButtonLight
-                                    class="mybutton"
+                            <b-button
+                                    class="btnLight mybutton"
                                     variant="primary"
                                     type="submit"
                                     style="width: 15rem;height: 4.3rem;margin-left:27rem; border-radius: 4px; position:absolute"
                             >Сохранить
-                            </MyButtonLight>
+                            </b-button>
                         </div>
                     </div>
                 </b-form>
@@ -96,16 +96,14 @@
 </template>
 
 <script>
-    import {ME_QUERY} from "../queries";
+    import {ME_QUERY} from "../../queries";
     import {
         UPDATEACCOUNT_MUTATION,
         RESENDACTIVATIONEMAIL_MUTATION
-    } from "../mutations";
-    import MyButtonLight from './UI/MyButtonLight'
+    } from "../../mutations";
 
     export default {
         name: 'User',
-        components:{MyButtonLight},
         data() {
             return {
                 me:null,

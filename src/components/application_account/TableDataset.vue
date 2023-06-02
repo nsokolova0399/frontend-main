@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import "../Dataset.css";
+    import "../../assets/Dataset.css";
     import {ME_QUERY,DATASETS_QUERY} from "../../queries";
 
     export default {
