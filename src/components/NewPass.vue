@@ -6,7 +6,7 @@
                 <b-form method="POST" @submit.prevent="newpassword" class="form" style="height: 31rem; width: 35.6rem; margin: 13rem auto 13rem auto">
                     <div class="input__group">
                         <div class="input__group__label" style="padding-top: 2.6rem; padding-left: 2rem">
-                            <label class="datasetcreate-label">Пожалуйста, новый пароль и подтвердите его</label>
+                            <label class="datasetcreate-label">Пожалуйста, введите новый пароль и подтвердите его</label>
                         </div>
                         <div class="input__group__label" style="padding-top: 0.6rem; padding-left: 2rem">
                             <label class="datasetcreate-label">Новый пароль:</label>
@@ -32,14 +32,14 @@
                         </div>
 
                         <div class="mybutton__1">
-                            <b-button
+                            <button
                                     class="mybutton btnLight"
                                     variant="primary"
                                     type="submit"
                                     style="width: 13rem;height: 3rem; border-radius: 4px;font-size: 1.5rem; margin:2rem auto 0 auto"
                             >
                                 Сохранить
-                            </b-button>
+                            </button>
                         </div>
 
                     </div>

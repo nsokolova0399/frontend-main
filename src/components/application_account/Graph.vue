@@ -1,7 +1,7 @@
 <template>
     <div class="col-12">
         <div class="row">
-            <div class="col-3 datasetcreate__first-title-label">Построение графика</div>
+            <div class="col-4 datasetcreate__first-title-label">Построение диаграммы</div>
             <label
                     v-if="!plottingGraph"
                     class="scatter-button-1 scatter-button-2"
@@ -94,7 +94,9 @@
             </b-button>
         </div>
         </div>
-        <div class="row scatter-fill">
+
+        </span>
+        <div v-if="plottingGraph" class="row scatter-fill">
             <Scatter
                     :chart-options="chartOptions"
                     :chart-data="chartData"
@@ -107,7 +109,6 @@
                     :height="height"
             />
         </div>
-        </span>
     </div>
 </template>
 

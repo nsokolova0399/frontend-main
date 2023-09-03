@@ -87,7 +87,7 @@
                             localStorage.setItem('token', data.data.tokenAuth.token)
                             localStorage.setItem('refreshToken', data.data.tokenAuth.refreshToken)
                             localStorage.setItem('auth', true)
-                            this.$router.replace('/Login/Menu/Greetings').catch(()=>{})
+                            this.$router.replace('/Login/Menu/Application').catch(()=>{})
                         }
                     })
                     .catch(error =>{

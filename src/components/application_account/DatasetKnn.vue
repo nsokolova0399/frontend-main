@@ -1,7 +1,7 @@
 <template>
     <span>
         <notifications position="top center" classes="my-notification"/>
-    <div class="row dataset-form" v-if="this.listDataset.length !== 0">
+    <div class="row dataset-form" v-if="listDataset.length !== 0">
         <div class="col-12">
             <div class="row">
                 <div class="col-12 top">
@@ -18,7 +18,7 @@
 </div>
         </div>
     </div>
-    <div class="row dataset-form" v-if="this.listDataset.length !== 0">
+    <div class="row dataset-form" v-if="listDataset.length !== 0">
         <div class="col-12">
             <div class="row">
                    <div class="col-12 top">
@@ -145,9 +145,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     </span>
 </template>
 
@@ -202,15 +200,15 @@
             titleData: {required}
         },
         methods: {
-            list() {
-                this.listDataset = [];
-                let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
-                for (let i = 0; i < arr.length; i++) {
-                    if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
-                        this.listDataset.push(arr[i])
-                    }
-                }
-            },
+            // list() {
+            //     this.listDataset = [];
+            //     let arr = this.$apollo.queries.datasetsQuery.vm.datasetsQuery.result;
+            //     for (let i = 0; i < arr.length; i++) {
+            //         if (arr[i].user.username === this.$apollo.queries.me.vm.me.username) {
+            //             this.listDataset.push(arr[i])
+            //         }
+            //     }
+            // },
             runalgorithmKnn() {
                 if (this.$v.selectedTitleDataset === '') {
                     return;

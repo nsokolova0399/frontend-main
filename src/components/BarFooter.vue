@@ -12,6 +12,7 @@
 </template>
 
 <script>
+    import '../assets/index.css'
     export default {
         name: "BarFooter",
     }

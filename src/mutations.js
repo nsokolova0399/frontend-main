@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const SIGNUP_MUTATION = gql`
+export const REGISTRATION_MUTATION = gql`
     mutation Register($username: String!, $email: String!, $password1: String!, $password2: String!) {
         register(
             username: $username,
@@ -58,23 +58,6 @@ export const CHANGEPASSWORD_MUTATION = gql`
         token
     }
 }
-`
-export const CREATEDATASET_MUTATION = gql`
-    mutation DatasetCreate($input: DatasetCreateInput!) {
-        datasetCreate(input: $input){
-            ok
-            errors{field}
-            dataset{
-                id
-                title
-                parameters{
-                    id
-                    title
-                }
-
-            }
-        }
-    }
 `
 export const UPDATEACCOUNT_MUTATION = gql`
     mutation UpdateAccount($firstName: String, $lastName: String) {

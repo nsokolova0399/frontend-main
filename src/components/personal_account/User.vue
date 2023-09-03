@@ -9,7 +9,7 @@
                             <div class="col-11 input__group" style="padding-top: 5rem">
                                 <label class="mylabel"
                                        style="padding-left: 5rem;padding-right: 5rem;">
-                                    Пожалуйста, подтвердите регистрацию. Вам на почту будет отправлено письмо.
+                                    Пожалуйста, подтвердите регистрацию. Вам на почту будет отправлено письмо с ссылкой для подтверждения регистрации.
                                 </label>
                                 <b-button
                                         @click="resendActivationEmail"

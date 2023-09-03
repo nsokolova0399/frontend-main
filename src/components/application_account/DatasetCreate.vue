@@ -220,7 +220,6 @@
                 }
             },
             datasetCreate() {
-
                 if (this.$v.DataSet.$model[this.id].title === '') {
                     return;
                 }

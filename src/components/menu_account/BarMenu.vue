@@ -1,44 +1,34 @@
 <template>
     <div>
             <div v-on:click='showDropdown'>
-                        <div class="row" style="width:9rem; margin:2rem">
+                        <div class="row" style="width:9rem; margin:2rem; margin-left:-3rem">
                             <span v-if="isShowDropdown" >
-                                <img src="../../assets/menu_question.png" style="height: 5rem; width: 5rem;"/>
-                                <img src="../../assets/arrow2.png" style="height: 2rem; width: 2rem;"/>
-
-                                <div>
-                                    <router-link
-                                            :to="{name:'Menu'}"
-                                    >
-                                        <img src="../../assets/menu_back.png" class="imgMenu"/>
-                                    </router-link>
-                                </div>
+                                <img src="../../assets/menu_question.png" class="buttonDropdown"/>
                                 <div>
                                     <router-link
                                             :to="{name:'User'}"
 
                                     >
-                                        <img src="../../assets/menu_office.png" class="imgMenu"/>
+                                        <button class="btnDark  buttonD">Личный кабинет</button>
                                     </router-link>
                                 </div>
                                 <div>
                                     <router-link
                                             :to="{name:'Application'}"
                                     >
-                                        <img src="../../assets/menu_api.png" class="imgMenu"/>
-                                    </router-link>
+                                       <button class="btnDark  buttonD">Приложение</button>
+                                   </router-link>
                                 </div>
                                 <div>
                                     <router-link @click=logout
                                                  :to="{name:'Home'}"
                                     >
-                                        <img src="../../assets/menu_logout.png" class="imgMenu"/>
+                                        <button class="btnDark  buttonD">Выход</button>
                                     </router-link>
                                 </div>
                             </span>
                             <span v-else>
-                                <img src="../../assets/menu_question.png" style="height: 5rem; width: 5rem;"/>
-                                <img src="../../assets/arrow1.png" style="height: 2rem; width: 2rem;"/>
+                                <img src="../../assets/menu_question.png" class="buttonDropdown"/>
                             </span>
                         </div>
             </div>
@@ -65,4 +55,17 @@
     }
 </script>
 
-<style></style>
+<style>
+.buttonDropdown{
+    height: 2.2rem;
+    width: 4.4rem;
+    margin-left: 2rem
+}
+.buttonD{
+    margin-top: 0.5rem;
+    margin-left: -4.5rem;
+    height: 4rem;
+    width: 17rem;
+    font-size: 1.7rem;
+}
+</style>

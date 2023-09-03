@@ -12,20 +12,22 @@ import {InMemoryCache} from 'apollo-cache-inmemory'
 import {ApolloLink} from "apollo-link";
 import {createUploadLink} from 'apollo-upload-client'
 import Notifications from 'vue-notification'
-import '/public/index.css'
+import '/src/assets/index.css'
 
-const authLink = setContext(async (request, {headers}) => {
+const authLink = setContext(async (_, {headers}) => {
+    // Получаем токен из хранилища
     let token = localStorage.getItem('token')
-     try{
-            return {
-                headers: {
-                    ...headers,
-                    authorization: token ? `JWT ${token}` : "",
-                }
-            }}
-            catch (error) {
-                console.log(error)
+    try {
+        return {
+            // Добавляем заголовок authorization с JWT
+            headers: {
+                ...headers,
+                authorization: token ? `JWT ${token}` : "",
             }
+        }
+    } catch (error) {
+        console.log(error)
+    }
 });
 
 const httpOptions = {

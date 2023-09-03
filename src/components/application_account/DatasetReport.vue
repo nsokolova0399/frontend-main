@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 3rem">
-                    <div class="col-3 datasetcreate__first-title-label">Построение графика</div>
+                    <div class="col-4 datasetcreate__first-title-label">Построение диаграммы</div>
                     <label
                             v-if="!plottingGraph"
                             class="scatter-button-1 scatter-button-2"
@@ -40,7 +40,7 @@
                 <div class="row" v-if="plottingGraph">
                     <div class="col-3">
                         <label class="datasetcreate-label">
-                            Датасет
+                            Отчет
                         </label>
                     </div>
                     <div class="col-8">

@@ -1,5 +1,6 @@
 .dataset-form{
-    background-color:#6fa1fc;
+    background-color: #6fa1fc;
+    box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     padding: 2rem 0.5rem;
     margin-top: 1.5rem;
@@ -27,7 +28,7 @@
 }
 .datasetcreate__title-label{
     position: relative;
-    color: #781312;
+    color: #393939;
     font-size: 1.4rem;
     margin-top: 0.5rem;
 }
@@ -126,8 +127,8 @@ b-form-file{
 }
 
 .imgMenu{
-    height: 5rem;
-    width: 5rem;
+    height: 2.4rem;
+    width: 10rem;
     margin-top: 1rem;
 }
 

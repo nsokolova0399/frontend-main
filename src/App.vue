@@ -1,25 +1,22 @@
 <template>
   <span>
-    <BarUpper></BarUpper>
+    <BarUpper />
      <div class="app">
       <router-view>
       </router-view>
      </div>
-    <BarFooter></BarFooter>
+    <BarFooter />
   </span>
 </template>
 
 <script>
+    import './assets/index.css'
     import BarUpper from '@/components/BarUpper.vue';
     import BarFooter from '@/components/BarFooter.vue';
+
     export default {
-        components:{ BarFooter, BarUpper },
+        components: {BarFooter, BarUpper},
     }
 </script>
 
-<style>
-    .app{
-        font-size: 10px;
-        font-family: 'Poppins', sans-serif;
-    }
-</style>
+<style></style>

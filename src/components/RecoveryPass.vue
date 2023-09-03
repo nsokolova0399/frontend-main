@@ -18,14 +18,14 @@
                         </div>
 
                         <div class="mybutton__1">
-                            <b-button
+                            <button
                                     class="btnLight"
                                     variant="primary"
                                     type="submit"
                                     style="width: 15rem;height: 3.4rem; border-radius: 4px;font-size: 1.5rem; margin:1rem"
                             >
-                                Отправить код
-                            </b-button>
+                                Отправить
+                            </button>
                         </div>
 
                     </div>

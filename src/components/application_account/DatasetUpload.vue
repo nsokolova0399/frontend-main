@@ -42,7 +42,7 @@
                                     accept="text/csv"
                                     ref="file-input"
                                     v-on:change="upload"
-                                    placeholder="Выберете файл:"
+                                    placeholder="Выберите файл:"
                                     browse-text="Загрузить"
                                     class=""
                             >{{this.file}}
@@ -51,6 +51,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12" v-if="this.listDataset.length === 0">
                 <label class="datasetcreate__first-title-label">
                     Пожалуйста, создайте хотя бы одну структуру для датасета

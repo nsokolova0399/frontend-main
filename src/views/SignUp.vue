@@ -89,7 +89,7 @@
 </template>
 
 <script>
-    import {SIGNUP_MUTATION} from '../mutations';
+    import {REGISTRATION_MUTATION} from '../mutations';
     import {email, required, minLength} from 'vuelidate/lib/validators';
     export default {
         name: 'SignUp',
@@ -111,7 +111,7 @@
             signup() {
                 this.$apollo
                     .mutate({
-                        mutation: SIGNUP_MUTATION,
+                        mutation: REGISTRATION_MUTATION,
                         variables: {
                             email: this.email,
                             username: this.username,
